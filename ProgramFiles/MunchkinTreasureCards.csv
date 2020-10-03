@@ -72,6 +72,3 @@ treasure,Kneepads Of Allure,Item,0,600,0,,,,{'Cleric':False},{},{},{Help:Higher 
 treasure,Short Wide Armor,Armor,3,400,0,1,,,{},{'Dwarf':True},{},{},,0,Munchkin
 treasure,Slimy Armor,Armor,1,200,0,1,,,{},{},{},{},,0,Munchkin
 treasure,Loaded Die,Item,0,300,0,,,,{},{},{},{Roll:True},,0,Munchkin
-
-
-https://github.com/waitsfornone/munchkin/blob/master/treasure_data.csv
