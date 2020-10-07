@@ -6,7 +6,7 @@ cardName = input('Enter part of name to find\n')
 #read csv, and split on "," the line
 csv_file = csv.reader(open('MunchkinTreasureCards.csv', "r"), delimiter=",")
 
-#result of search list
+#result of search list variables
 searchResult = []
 
 #loop through the csv list
@@ -16,15 +16,16 @@ for row in csv_file:
         if cardName.lower() in map(lambda x:x.lower(),row) or cardName.lower() in row[1].lower():
             searchResult.append(row)
 
+#Throws a message when nothing is found.
 if len(searchResult) == 0:
     print("No hits!")
-else:
+else: #printing each result on a new line
     for row in searchResult:
         print(row)
-    print(f"\n {len(searchResult)} results found")
+    print(f"\n {len(searchResult)} results found") #counting the results
+    
+    
 """
-Nothing found if no cards is found
-No difference of lowercase and uppercase
 where should with be be placed?
-map(lambda x:x.lower(),["A","B","C"])
+Does not work on all rowes. Eg inside the {}. 
 """
