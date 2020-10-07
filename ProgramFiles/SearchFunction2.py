@@ -19,7 +19,9 @@ for row in csv_file:
 if len(searchResult) == 0:
     print("No hits!")
 else:
-    print(searchResult)
+    for row in searchResult:
+        print(row)
+    print(f"\n {len(searchResult)} results found")
 """
 Nothing found if no cards is found
 No difference of lowercase and uppercase
