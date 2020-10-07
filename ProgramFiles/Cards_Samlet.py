@@ -209,7 +209,3 @@ print(Cards.Left)
     - Class parameter as method. Best way? e.g. BadStuff, CurseEffect. 
     - Footgear, headgear armour, level up cards and so on, has no special parameters. Should it just use the enum to identify itself? 
 """
-
-
-    
-    

@@ -9,13 +9,13 @@ csv_file = csv.reader(open('MunchkinTreasureCards.csv', "r"), delimiter=",")
 #loop through the csv list
 for row in csv_file:
     if len(row) > 1: #checking for empty rows
-    #if current rows 2nd value is equal to input, print that row
-        if cardName in row or cardName in row[1]:
+    #if input is equel to anything in the file, then it is returned. lower() makes sure it does not distinguish between lower and uppercase. 
+        if cardName.lower() in row or cardName.lower() in row[1].lower():
             print(row)
 
 
 """
 Nothing found if no cards is found
 No difference of lowercase and uppercase
-Search in all columns
+where should with be be placed?
 """

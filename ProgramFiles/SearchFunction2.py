@@ -1,22 +1,21 @@
 import csv
-import time
-from collections import defaultdict
 
-columns = defaultdict(list)
+#input number you want to search
+cardName = input('Enter part of name to find\n')
 
-with (open('MunchkinTreasureCards.csv', "r"), delimiter=",") as f:
-    reader = csv.reader(f)
-    reader.next()
-    for row in reader:
-        for (i,v) in enumerate(row):
-            columns[i].append(v)
-            b=(columns[2])
+#read csv, and split on "," the line
+csv_file = csv.reader(open('MunchkinTreasureCards.csv', "r"), delimiter=",")
 
-            for x in b[:]:
-                with open('file2.csv') as f, open('file3.csv', 'a') as g:
-                    reader = csv.reader(f)
-                    #next(reader, None) # discard the header
-                    writer = csv.writer(g)
-                    for row in reader:
-                        if row[2] == x:
-                            writer.writerow(row[:2])
+#loop through the csv list
+for row in csv_file:
+    if len(row) > 1: #checking for empty rows
+    #if input is equel to anything in the file, then it is returned. lower() makes sure it does not distinguish between lower and uppercase. 
+        if cardName.lower() in row or cardName.lower() in row[1].lower():
+            print(row)
+
+
+"""
+Nothing found if no cards is found
+No difference of lowercase and uppercase
+where should with be be placed?
+"""
