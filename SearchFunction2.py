@@ -13,9 +13,8 @@ searchResult = []
 for row in csv_file:
     if len(row) > 1: #checking for empty rows
     #if input is equel to anything in the file, then it is returned. lower() makes sure it does not distinguish between lower and uppercase. 
-        if cardName.lower() in map(lambda x:x.lower(),row) or cardName.lower() in row[1].lower():
-            searchResult.append(row)
-
+        if any(cardName.lower() in cell.lower() for cell in row):
+            searchResult.append(row) #adding row to result 
 #Throws a message when nothing is found.
 if len(searchResult) == 0:
     print("No hits!")
