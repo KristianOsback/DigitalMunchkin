@@ -1,5 +1,6 @@
 from enum import Enum #auto can auto number them.
-
+#from CardDesign import PrintCard #printing card with ascii grafic Sker udfordringen fordi den importer i loop? 
+from SearchFunction import SearchCard #searchfunction
 
 class CardType(Enum):
     """The different cardtypes like monstercards, headgear, curses ect."""
@@ -20,7 +21,6 @@ class CardType(Enum):
        
 class Cards:
     """The overall card object. Different kind of cards will inherit from this"""
-   
    
     totalCardList = []
     cardStack = list()
@@ -52,21 +52,9 @@ class Cards:
         
         discardStack.append(card) #card is thrown in the discard stack
         removedFrom.pop(card) #card is removed from stack or the players hand or the table
+       
      
-     
-class DoorCards(Cards):    
-     
-    def __init__(self): 
-        """Initializes the data."""
- 
- 
-class TreasureCards(Cards):    
-     
-    def __init__(self): 
-        """Initializes the data."""  
-     
-     
-class GearCards(Cards, TreasureCards):    
+class GearCards(Cards):    
      
     def __init__(self, itemValue, bonus, special, limitation): 
         """Initializes the data."""
@@ -81,7 +69,7 @@ class GearCards(Cards, TreasureCards):
         print("(Initializing {})".format(self.limitation))
       
       
-class MonsterCards(Cards, DoorCards):    
+class MonsterCards(Cards):    
      
     def __init__(self, monsterLevel, badStuff): 
         """Initializes the data."""
@@ -92,7 +80,7 @@ class MonsterCards(Cards, DoorCards):
         print("(Initializing {})".format(self.badStuff))
         
         
-class CurseCards(Cards, DoorCards):    
+class CurseCards(Cards):    
      
     def __init__(self, curseEffect): 
         """Initializes the data."""
@@ -101,7 +89,7 @@ class CurseCards(Cards, DoorCards):
         print("(Initializing {})".format(self.curseEffect))
         
 
-class SteedCards(Cards, DoorCards):    
+class SteedCards(Cards):    
      
     def __init__(self, bonus, talking, flying, fireBreathing): 
         """Initializes the data."""
@@ -116,7 +104,7 @@ class SteedCards(Cards, DoorCards):
         print("(Initializing {})".format(self.fireBreathing))
         
 
-class HirelingCards(Cards, TreasureCards):    
+class HirelingCards(Cards):    
      
     def __init__(self, hirelingBonus): 
         """Initializes the data."""
@@ -125,7 +113,7 @@ class HirelingCards(Cards, TreasureCards):
         print("(Initializing {})".format(self.hirelingBonus))
    
    
-class ClassCards(Cards, DoorCards):    
+class ClassCards(Cards):    
      
     def __init__(self, specialSkill): 
         """Initializes the data."""
@@ -134,7 +122,7 @@ class ClassCards(Cards, DoorCards):
         print("(Initializing {})".format(self.specialSkill))
     
     
-class BreedCards(Cards, DoorCards):    
+class BreedCards(Cards):    
      
     def __init__(self, specialSkill): 
         """Initializes the data."""
@@ -143,25 +131,25 @@ class BreedCards(Cards, DoorCards):
         print("(Initializing {})".format(self.specialSkill))
        
        
-class HeadgearCards(Cards, TreasureCards, GearCards):    
+class HeadgearCards(GearCards):    
      
     def __init__(self): 
         """Initializes the data."""
         
         
-class FootgearCards(Cards, TreasureCards, GearCards):    
+class FootgearCards(GearCards):    
      
     def __init__(self): 
         """Initializes the data."""
        
         
-class ArmourCards(Cards, TreasureCards, GearCards):    
+class ArmourCards(GearCards):    
      
     def __init__(self): 
         """Initializes the data."""
         
         
-class WeaponCards(Cards, TreasureCards, GearCards):    
+class WeaponCards(GearCards):    
      
     def __init__(self, twoHanded): 
         """Initializes the data."""
@@ -170,13 +158,13 @@ class WeaponCards(Cards, TreasureCards, GearCards):
         print("(Initializing {})".format(self.twoHanded))
         
         
-class LevelCards(Cards, TreasureCards, GearCards):    
+class LevelCards(GearCards):    
      
     def __init__(self, cardType): 
         """Initializes the data."""
      
 
-class MonsterboosterCards(Cards, DoorCards):    
+class MonsterboosterCards(Cards):    
      
     def __init__(self, boost): 
         """Initializes the data."""
@@ -185,7 +173,7 @@ class MonsterboosterCards(Cards, DoorCards):
         print("(Initializing {})".format(self.boost))
         
         
-class BoostCards(Cards, TreasureCards):    
+class BoostCards(Cards):    
      
     def __init__(self, specialEffect): 
         """Initializes the data."""
@@ -194,18 +182,19 @@ class BoostCards(Cards, TreasureCards):
         print("(Initializing {})".format(self.specialEffect))
         
         
-        
-Card1 = Cards(1, "Bi Polar Bear", CardType.monsterCard) #create card
+Card1 = Cards(1, "Bi Polar Bear", CardType.monsterCard, "He cannot decide to battle or not") #create card
 print(Cards.totalCardList)
 print (Cards.Amount)
 print(Cards.Left)
 
+SearchCard()
 
 """ Questions
-    - totalCardList should be a tuple, is best way to create the variable and then assign the data to it afterwards.
-    - Should doorcards/treasure cards just be a bool? Variable? Enum? And then leave out those classes. 
+    . Why is object printed? Run program.
+    - totalCardList should be a tuple, is best way to create the variable and then assign the data to it afterwards. Cannot be changed afterwards!
     - If a class inherit from another class which takes parameters, will you then have to add the parameters from
     parent class when creating and instans of the sub class? Better to destroy root class and then have door and treasure as root? 
     - Class parameter as method. Best way? e.g. BadStuff, CurseEffect. 
-    - Footgear, headgear armour, level up cards and so on, has no special parameters. Should it just use the enum to identify itself? 
+    - Footgear, headgear armour, level up cards and so on, has no special parameters. Should it just use the enum to identify itself?
+    - where should with be be placed in search function?
 """
