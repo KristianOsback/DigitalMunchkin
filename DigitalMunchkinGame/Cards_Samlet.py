@@ -183,9 +183,7 @@ class BoostCards(Cards):
         
         
 Card1 = Cards(1, "Bi Polar Bear", CardType.monsterCard, "He cannot decide to battle or not") #create card
-print(Cards.totalCardList)
-print (Cards.Amount)
-print(Cards.Left)
+
 
 SearchCard()
 
