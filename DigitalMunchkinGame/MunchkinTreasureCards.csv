@@ -44,31 +44,31 @@
 43,treasure,Broad Sword,Weapon,3,400,1,,,,{},{},{'Female':True},{},,0,Munchkin,Heavy but sharp
 44,treasure,Pantyhose Of Giant Strength,Armor,3,600,0,,,,{'Warrior':False},{},{},{},,0,Munchkin,I feel powerful!
 45,treasure,Boots Of Running Really Fast,Armor,0,400,0,,1,,{},{},{},{},,2,Munchkin,Speed up!
-46,treasure,Hammer Of Kneecapping,Weapon,4,600,1,,,,{'Dwarf':True},{},{},{},,0,Munchkin
-47,treasure,Electric Radioactive Acid Potion,Item,5,200,0,,,,{},{},{},{Sides:Both},,0,Munchkin
-48,treasure,Pointy Hat Of Power,Armor,3,400,0,,,1,{'Wizard':True},{},{},{},,0,Munchkin
-49,treasure,Mace Of Sharpness,Weapon,4,600,1,,,,{'Cleric':True},{},{},{},,0,Munchkin
-50,treasure,Gentlemen's Club,Weapon,3,400,1,,,,{},{},{'Male':True},{},,0,Munchkin
-51,treasure,Potion Of General Studliness,GUAL,0,0,0,,,,{},{},{},{Level:1},,0,Munchkin
-52,treasure,Huge Rock,Weapon,3,0,2,,,,{},{},{},{},1,0,Munchkin
-53,treasure,Sandals Of Protection,Armor,0,700,0,,1,,{},{},{},{Drawn Curse:False},,0,Munchkin
-54,treasure,Spiky Knees,Armor,1,200,0,,,,{},{},{},{},,0,Munchkin
-55,treasure,Chainsaw Of Bloody Dismemberment,Weapon,3,600,2,,,,{},{},{},{},1,0,Munchkin
-56,treasure,Mithril Armor,Armor,3,600,0,1,,,{'Wizard':False},{},{},{},1,0,Munchkin
-57,treasure,Nasty Tasting Sports Drink,Item,2,200,0,,,,{},{},{},{Sides:Both},1,0,Munchkin
-"58,treasure,Potion Of Halitosis,Item,2,100,0,,,,{},{},{},""{Sides:Both, Flying Nose:Kill}"",,0,Munchkin"
-"59,treasure,Flask Of Glue,Item,0,100,0,,,,{},{},{},""{Roll:Again,Roll:After}"",,0,Munchkin"
-60,treasure,Potion Of Idiotic Bravery,Item,2,100,0,,,,{},{},{},{Sides:Both},,0,Munchkin
-61,treasure,Invisibility Potion,Item,0,200,0,,,,{},{},{},{Roll:True},,0,Munchkin
-62,treasure,Dagger Of Treachery,Weapon,3,400,1,,,,{'Thief':True},{},{},{},,0,Munchkin
-63,treasure,Limburger And Anchovy Sandwich,Weapon,3,400,0,,,,{},{'Halfling':True},{},{},,0,Munchkin
-64,treasure,Pretty Balloons,Item,5,0,0,,,,{},{},{},{Sides:Both},,0,Munchkin
-65,treasure,Yuppie Water,Item,0,100,0,,,,{},{'Elf':True},{},{Elf:2},,0,Munchkin
-66,treasure,Rapier Of Unfairness,Weapon,3,600,1,,,,{},{'Elf':True},{},{},,0,Munchkin
-67,treasure,Tuba Of Charm,Weapon,0,300,1,,,,{},{},{},{Treasure:1},1,3,Munchkin
-68,treasure,Cloak Of Obscurity,Armor,4,600,0,,,,{'Thief':True},{},{},{},,0,Munchkin
-69,treasure,Stepladder,Weapon,3,400,0,,,,{},{'Halfling':True},{},{},1,0,Munchkin
-70,treasure,Kneepads Of Allure,Item,0,600,0,,,,{'Cleric':False},{},{},{Help:Higher Player},,0,Munchkin
-71,treasure,Short Wide Armor,Armor,3,400,0,1,,,{},{'Dwarf':True},{},{},,0,Munchkin
-72,treasure,Slimy Armor,Armor,1,200,0,1,,,{},{},{},{},,0,Munchkin
-73,treasure,Loaded Die,Item,0,300,0,,,,{},{},{},{Roll:True},,0,Munchkin
+46,treasure,Hammer Of Kneecapping,Weapon,4,600,1,,,,{'Dwarf':True},{},{},{},,0,Munchkin,Auch!
+47,treasure,Electric Radioactive Acid Potion,Item,5,200,0,,,,{},{},{},{Sides:Both},,0,Munchkin,Don't drink
+48,treasure,Pointy Hat Of Power,Armor,3,400,0,,,1,{'Wizard':True},{},{},{},,0,Munchkin,Very pointy
+49,treasure,Mace Of Sharpness,Weapon,4,600,1,,,,{'Cleric':True},{},{},{},,0,Munchkin,What's the point?
+50,treasure,Gentlemen's Club,Weapon,3,400,1,,,,{},{},{'Male':True},{},,0,Munchkin,Not for ladies
+51,treasure,Potion Of General Studliness,GUAL,0,0,0,,,,{},{},{},{Level:1},,0,Munchkin,Don't drink
+52,treasure,Huge Rock,Weapon,3,0,2,,,,{},{},{},{},1,0,Munchkin,Hits hard, very hard
+53,treasure,Sandals Of Protection,Armor,0,700,0,,1,,{},{},{},{Drawn Curse:False},,0,Munchkin,Good comfort for your feet
+54,treasure,Spiky Knees,Armor,1,200,0,,,,{},{},{},{},,0,Munchkin,Do not wear them inside out
+55,treasure,Chainsaw Of Bloody Dismemberment,Weapon,3,600,2,,,,{},{},{},{},1,0,Munchkin,Great for slicing meat
+56,treasure,Mithril Armor,Armor,3,600,0,1,,,{'Wizard':False},{},{},{},1,0,Munchkin,Shiny!
+57,treasure,Nasty Tasting Sports Drink,Item,2,200,0,,,,{},{},{},{Sides:Both},1,0,Munchkin,Good and aweful at the same time
+"58,treasure,Potion Of Halitosis,Item,2,100,0,,,,{},{},{},""{Sides:Both, Flying Nose:Kill}"",,0,Munchkin,Like garlic but worse"
+"59,treasure,Flask Of Glue,Item,0,100,0,,,,{},{},{},""{Roll:Again,Roll:After}"",,0,Munchkin,Warning! Sticky"
+60,treasure,Potion Of Idiotic Bravery,Item,2,100,0,,,,{},{},{},{Sides:Both},,0,Munchkin,Makes you more idiotic than Brave
+61,treasure,Invisibility Potion,Item,0,200,0,,,,{},{},{},{Roll:True},,0,Munchkin,Where is it?
+62,treasure,Dagger Of Treachery,Weapon,3,400,1,,,,{'Thief':True},{},{},{},,0,Munchkin,Do not turn your back to it
+63,treasure,Limburger And Anchovy Sandwich,Weapon,3,400,0,,,,{},{'Halfling':True},{},{},,0,Munchkin,Eew
+64,treasure,Pretty Balloons,Item,5,0,0,,,,{},{},{},{Sides:Both},,0,Munchkin,Pretty
+65,treasure,Yuppie Water,Item,0,100,0,,,,{},{'Elf':True},{},{Elf:2},,0,Munchkin,Yuppie
+66,treasure,Rapier Of Unfairness,Weapon,3,600,1,,,,{},{'Elf':True},{},{},,0,Munchkin,It is just not fair
+67,treasure,Tuba Of Charm,Weapon,0,300,1,,,,{},{},{},{Treasure:1},1,3,Munchkin,Charming honk
+68,treasure,Cloak Of Obscurity,Armor,4,600,0,,,,{'Thief':True},{},{},{},,0,Munchkin,Confusing
+69,treasure,Stepladder,Weapon,3,400,0,,,,{},{'Halfling':True},{},{},1,0,Munchkin,For small people or dwarfs
+70,treasure,Kneepads Of Allure,Item,0,600,0,,,,{'Cleric':False},{},{},{Help:Higher Player},,0,Munchkin,Tempting
+71,treasure,Short Wide Armor,Armor,3,400,0,1,,,{},{'Dwarf':True},{},{},,0,Munchkin,Dwarf made for sure
+72,treasure,Slimy Armor,Armor,1,200,0,1,,,{},{},{},{},,0,Munchkin,Eew
+73,treasure,Loaded Die,Item,0,300,0,,,,{},{},{},{Roll:True},,0,Munchkin,Almost not cheating

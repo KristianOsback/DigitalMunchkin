@@ -25,3 +25,4 @@ def SearchCard():
             print(row)
         print(f"\n {len(searchResult)} results found") #counting the results
 
+SearchCard()

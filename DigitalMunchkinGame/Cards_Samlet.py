@@ -1,6 +1,6 @@
 from enum import Enum #auto can auto number them.
 #from CardDesign import PrintCard #printing card with ascii grafic Sker udfordringen fordi den importer i loop? 
-from SearchFunction import SearchCard #searchfunction
+from SearchFunction_v2 import SearchCard #searchfunction
 
 class CardType(Enum):
     """The different cardtypes like monstercards, headgear, curses ect."""
@@ -182,17 +182,15 @@ class BoostCards(Cards):
         print("(Initializing {})".format(self.specialEffect))
         
         
-Card1 = Cards(1, "Bi Polar Bear", CardType.monsterCard, "He cannot decide to battle or not") #create card
+#Card1 = Cards(1, "Bi Polar Bear", CardType.monsterCard, "He cannot decide to battle or not") #create card
 
 
-SearchCard()
+#SearchCard()
 
 """ Questions
-    . Why is object printed? Run program.
-    - totalCardList should be a tuple, is best way to create the variable and then assign the data to it afterwards. Cannot be changed afterwards!
+    - Dictreader does not work when using it on search function.
     - If a class inherit from another class which takes parameters, will you then have to add the parameters from
     parent class when creating and instans of the sub class? Better to destroy root class and then have door and treasure as root? 
     - Class parameter as method. Best way? e.g. BadStuff, CurseEffect. 
     - Footgear, headgear armour, level up cards and so on, has no special parameters. Should it just use the enum to identify itself?
-    - where should with be be placed in search function?
 """
