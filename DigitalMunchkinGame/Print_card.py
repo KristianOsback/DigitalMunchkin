@@ -8,7 +8,7 @@ def PrintCard():
     cardName = "Transferral Potion"
     cardType = "Item"
     cardDescription = "Quick transportation"
-    isBig = True
+    isBig = False
     itemValue = str(300)
 
     print(" " + "".center(indent2, '-')) #printing top
@@ -27,9 +27,9 @@ def PrintCard():
     
     #printing cardName
     print("".center(0, ' '), end=" ")
-    print("|", end=" ") #Printing left side
-    print(cardName.center((indent - len(cardName)), " "), end=" ") #Printing cardNumber
-    print("|".rjust(indent - (len(cardName) + 1), " ")) #Printing right side
+    print("|", end="") #Printing left side remove space in end
+    print(cardName.center((indent), " "), end="") #Printing cardNumber - remove the space in end and the extra indent.
+    print("|") #Printing right side, only the line
     
     #printing cardType
     print("".center(0, ' '), end=" ")
@@ -45,9 +45,9 @@ def PrintCard():
     
     #printing cardDescription
     print("".center(0, ' '), end=" ")
-    print("|", end=" ") #Printing left side
-    print(cardDescription.center((indent - len(cardDescription)), " "), end=" ") #Printing cardNumber
-    print("|".rjust(indent - (len(cardDescription) + 1), " ")) #Printing right side
+    print("|", end="") #Printing left side
+    print(cardDescription.center((indent), " "), end="") #Printing cardNumber
+    print("|") #Printing right side
 
     #Printing empty space
     for i in range(8):
@@ -58,21 +58,17 @@ def PrintCard():
  
     #printing Big and itemValue
     print("".center(0, ' '), end=" ")
-    print("|", end=" ") #Printing left side
-    print(itemValue.rjust((indent - 20), " "), end=" ") #Printing cardNumber
+    print("|", end="") #Printing left side
+    print(itemValue, end="") #Printing cardNumber
     if isBig == True:
-        print("Big".rjust((indent -(len(itemValue) + 5)), " "), end=" ") #Printing cardNumber
-    print("|".rjust(indent - (len(itemValue) + 21), " ")) #Printing right side
-        
+        print("Big".rjust((indent-3), " "), end="") #Printing cardNumber
+        print("|") #Printing right side
+    else:
+        print("|".rjust((indent-3), " "), end=""))
     print(" " + "".center(indent2, '-')) #Printing bottom
     
     
     
     
 
-"""
-- What determines how many spaces you need to take out to make space for text?
-- Why does .center not work with long strings?
-- Why does .rjust not work with Big
-"""
 PrintCard()

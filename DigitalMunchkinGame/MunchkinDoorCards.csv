@@ -1,1 +1,30 @@
-﻿
+﻿card_number,card_deck,name,card_type,monster level or battle modifier,bad stuff,class restriction,breed restriction,gender restriction,card_description
+1,door,Platycore,Monster,6,Lose 2 levels,+6 against Wizards,,,Platypus dragon lion thing
+2,door,Pack Rat,Monster,3,Discard item and draw treasure,,,,Small rat with a bit pack
+3,door,Sock Puppet,Monster,1,Discard 2 cards,,,,It socks
+4,door,Grafitti,Monster,1,Change sex,,,,The pen is mightier than the sword
+5,door,Lord Yahoo,Monster,5,Discard Headgear,Bards +5,Elves and Halflings +5,,Pure knightly
+6,door,Wannabe Vampire,Monster,12,Lose 3 levels,Cleric win automatically,,,Bloodsucker
+7,door,Plushy Skull,Monster,1,You is turned female,,,+2 against females,Furry
+8,door,Lose your armour,Curse,,,,,,Your armour is smelting
+9,door,Lose your class,Curse,,,,,,Unemployed
+10,door,Lose your race,Curse,,,,,,Humanity for the win
+11,door,Thief,Class,,,,,,Stealing is life
+12,door,Warrior,Class,,,,,,Fighting all the way
+13,door,Bard,Class,,,,,,Music all day long
+14,door,Cleric,Class,,,,,,Holy Moly
+15,door,Gnome Hireling,Hireling,1,,,,,Small friend
+16,door,Bard Hireling,Hireling,1,,,,,Loud but friendly
+17,door,Elf Hireling,Hireling,1,,,,,Tall one
+18,door,Thief Hireling,Hireling,1,,,,,Mind your pockets
+19,door,Dwarf,Race,,,,,,Small and chubby
+20,door,Halfling,Race,,,,,,Half guy
+21,door,Orc,Race,,,,,,Ugly but fierce
+22,door,Elf,Race,,,,,,Tall guy
+23,door,Gnome,Race,,,,,,Small one
+24,door,Underdressed,Modifier,+5,,,,,Quit staring and bash it
+25,door,Intelligent,Modifier,+5,,,,,Clever one
+26,door,Hairy,Modifier,+5,,,,,Hair everywhere
+27,door,Buffet,Modifier,+5,,,,,Big guy
+28,door,Ultra-Rare,Modifier,+10,,,,,Never seen one before
+29,door,Half a…,Modifier,-5,,,,,Half is gone
