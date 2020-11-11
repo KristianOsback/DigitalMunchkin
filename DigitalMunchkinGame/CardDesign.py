@@ -18,7 +18,7 @@ def PickCard(cardNumber):
             if cardNumber == row[0]:
                 if len(row) > 1: #checking for empty rows
                 #Finding Card with correct cardNumber
-                    pickedCard = Cards(row[0], row[2], row[3], row[17])
+                    pickedCard = Cards(row[0], row[2], row[3], row[5], row[17])
                     PrintCard()
             else:
                 print("No card with that number")

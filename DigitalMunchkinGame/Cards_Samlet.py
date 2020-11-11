@@ -53,21 +53,29 @@ class Cards:
         discardStack.append(card) #card is thrown in the discard stack
         removedFrom.pop(card) #card is removed from stack or the players hand or the table
        
+class TreasureCards(Cards):    
      
-class GearCards(Cards):    
-     
-    def __init__(self, itemValue, bonus, special, limitation): 
+    def __init__(self, itemValue): 
         """Initializes the data."""
         
         self.itemValue = itemValue
+        print("(Initializing {})".format(self.itemValue))
+ 
+       
+    
+class GearCards(TreasureCards):    
+     
+    def __init__(self, bonus, special, limitation, big): 
+        """Initializes the data."""
+        
         self.bonus = bonus
         self.special = special
         self.limitation = limitation
+        self.big = big
         print("(Initializing {})".format(self.itemValue))
         print("(Initializing {})".format(self.bonus))
         print("(Initializing {})".format(self.special))
-        print("(Initializing {})".format(self.limitation))
-      
+        print("(Initializing {})".format(self.limitation))  
       
 class MonsterCards(Cards):    
      
