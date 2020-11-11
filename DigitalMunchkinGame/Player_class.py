@@ -14,7 +14,7 @@ class Player:
     foot = None
     hands = None 
     
-    def __init__(self, handCards, tableCards, gender, breed, playerClass,level,gold,armour,head,foot,hands): 
+    def __init__(self, handCards = [None], tableCards = [None], gender = "Male", breed = "human", playerClass = None, level = 1, gold = 0, armour = None, head = None, foot = None, hands = None): 
         """Initializes the data."""
         
         self.handCards = handCards
@@ -41,12 +41,3 @@ class Player:
         print("(Initializing {})".format(self.hands))
     
 
-
-
-P1 = Player()
-print(P1)
-
-
-"""
-- Where should start/default values be placed? 
-"""

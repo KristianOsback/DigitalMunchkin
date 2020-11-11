@@ -16,7 +16,12 @@ class CardType(Enum):
     levelCard = "Level up"
     monsterboostCard = "Monster boost"
     boostCard = "Boost"
-       
+
+totalCardList = []
+cardStack = list()
+discardStack = list()
+
+
 class Cards:
     """The overall card object. Different kind of cards will inherit from this"""
    
@@ -188,7 +193,7 @@ class BoostCards(Cards):
         print("(Initializing {})".format(self.specialEffect))
         
         
-#Card1 = Cards(1, "Bi Polar Bear", CardType.monsterCard, "He cannot decide to battle or not") #create card
+For 
 
 
 #SearchCard()
