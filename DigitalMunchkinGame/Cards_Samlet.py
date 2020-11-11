@@ -1,6 +1,4 @@
 from enum import Enum #auto can auto number them.
-#from CardDesign import PrintCard #printing card with ascii grafic Sker udfordringen fordi den importer i loop? 
-from SearchFunction_v2 import SearchCard #searchfunction
 
 class CardType(Enum):
     """The different cardtypes like monstercards, headgear, curses ect."""
