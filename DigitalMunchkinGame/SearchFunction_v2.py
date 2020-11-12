@@ -2,7 +2,7 @@ import csv
 
 
 def PrintCard():
-    #input number you want to search
+    #input part of name you want to search for
     search_input = input('Enter part of name to find\n')
 
 

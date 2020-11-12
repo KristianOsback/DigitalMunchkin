@@ -1,5 +1,5 @@
 from enum import Enum #auto can auto number them.
-
+import csv
 class CardType(Enum):
     """The different cardtypes like monstercards, headgear, curses ect."""
     
@@ -8,7 +8,7 @@ class CardType(Enum):
     steedCard = "Steed"
     hirelingCard = "Hireling"
     classCard = "Class"
-    breedCard = "Breed"
+    RaceCard = "Race"
     headgearCard = "Headgear"
     footgearCard = "Footgear"
     armourCard = "Armour"
@@ -18,16 +18,13 @@ class CardType(Enum):
     boostCard = "Boost"
 
 totalCardList = []
-cardStack = list()
-discardStack = list()
-
+doorCardsStack = []
+doorCardsDiscardStack = []
+treasureCardsStack = []
+treasureCardsDiscardStack = []
 
 class Cards:
     """The overall card object. Different kind of cards will inherit from this"""
-   
-    totalCardList = []
-    cardStack = list()
-    discardStack = list()
     
     Amount = 0
     Left = 0
@@ -100,21 +97,6 @@ class CurseCards(Cards):
         print("(Initializing {})".format(self.curseEffect))
         
 
-class SteedCards(Cards):    
-     
-    def __init__(self, bonus, talking, flying, fireBreathing): 
-        """Initializes the data."""
-        
-        self.bonus = bonus
-        self.talking = talking
-        self.flying = flying
-        self.fireBreathing = fireBreathing
-        print("(Initializing {})".format(self.bonus))
-        print("(Initializing {})".format(self.talking))
-        print("(Initializing {})".format(self.flying))
-        print("(Initializing {})".format(self.fireBreathing))
-        
-
 class HirelingCards(Cards):    
      
     def __init__(self, hirelingBonus): 
@@ -126,21 +108,25 @@ class HirelingCards(Cards):
    
 class ClassCards(Cards):    
      
-    def __init__(self, specialSkill): 
+    def __init__(self): 
         """Initializes the data."""
-        
-        self.specialSkill = specialSkill
-        print("(Initializing {})".format(self.specialSkill))
+  
     
     
-class BreedCards(Cards):    
+class RaceCards(Cards):    
      
-    def __init__(self, specialSkill): 
+    def __init__(self): 
         """Initializes the data."""
         
-        self.specialSkill = specialSkill
+
+class ModifierCards(Cards):    
+     
+    def __init__(self, modifier): 
+        """Initializes the data."""
+        
+        self.modifier = modifier
         print("(Initializing {})".format(self.specialSkill))
-       
+    
        
 class HeadgearCards(GearCards):    
      
@@ -171,7 +157,7 @@ class WeaponCards(GearCards):
         
 class LevelCards(GearCards):    
      
-    def __init__(self, cardType): 
+    def __init__(self): 
         """Initializes the data."""
      
 
@@ -183,20 +169,60 @@ class MonsterboosterCards(Cards):
         self.boost = boost
         print("(Initializing {})".format(self.boost))
         
-        
-class BoostCards(Cards):    
-     
-    def __init__(self, specialEffect): 
-        """Initializes the data."""
-        
-        self.specialEffect = specialEffect
-        print("(Initializing {})".format(self.specialEffect))
-        
-        
-For 
+   
+
+#creating door card stack
+#read csv, and split on "," the line
+with open('MunchkinDoorCards.csv', "r") as csv_file:
+    reader = csv.reader(csv_file)
+
+    #loop through the csv list
+    for row in reader:
+        if len(row) > 1: #checking for empty rows 
+            if row[3] == "Monster"
+                doorCardsStack.append(MonsterCards(row[0], row[2], row[3], row[9], row[4], row[5]))
+            #elif row[3] == "Curse"
+                doorCardsStack.append(CurseCards(row[0], row[2], row[3], row[9], row[5], row[5]))
+            #elif row[3] == "Class"
+                doorCardsStack.append(ClassCards(row[0], row[2], row[3], row[9], row[5]))
+            #elif row[3] == "Race"
+                doorCardsStack.append(RaceCards(row[0], row[2], row[3], row[9], row[5]))
+            #elif row[3] == "Hireling"
+                doorCardsStack.append(HirelingCards(row[0], row[2], row[3], row[9], row[4]))
+            #elif row[3] == "Modifier"
+                doorCardsStack.append(ModifierCards(row[0], row[2], row[3], row[9], row[4]))
+                
+
+#creating treasure card stack
+#read csv, and split on "," the line
+with open('MunchkinTreasureCards.csv', "r") as csv_file:
+    reader = csv.reader(csv_file)
+
+    #loop through the csv list
+    for row in reader:
+        if len(row) > 1: #checking for empty rows 
+            if row[3] == "Weapon"
+                treasureCardsStack.append(WeaponCards(row[0], row[2], row[3], row[16], row[5], row[13]))
+            #elif row[3] == "Headgear"
+                treasureCardsStack.append(HeadgearCards(row[0], row[2], row[3], row[16], row[5], row[13]))
+            #elif row[3] == "Footgear"
+                treasureCardsStack.append(FootgearCards(row[0], row[2], row[3], row[16], row[5], row[13]))
+            #elif row[3] == "Armour"
+                treasureCardsStack.append(ArmourCards(row[0], row[2], row[3], row[16], row[5], row[13]))
+            #elif row[3] == "GUAL"
+                treasureCardsStack.append(LevelCards(row[0], row[2], row[3], row[16], row[5], row[13]))
+                
+                
+                
+                
+                
+                
+print(treasureCardsStack) 
+print(doorCardsStack) 
 
 
-#SearchCard()
+
+
 
 """ Questions
     - Dictreader does not work when using it on search function.

@@ -61,11 +61,15 @@ def PrintCard():
     print("|", end="") #Printing left side
     print(itemValue, end="") #Printing cardNumber
     if isBig == True:
-        print("Big".rjust((indent-3), " "), end="") #Printing cardNumber
+        print("Big".rjust((indent-3), " "), end="") #Printing Big
         print("|") #Printing right side
+        print(" " + "".center(indent2, '-')) #Printing bottom
     else:
-        print("|".rjust((indent-3), " "), end=""))
-    print(" " + "".center(indent2, '-')) #Printing bottom
+        print(" ".rjust((indent-3), " "), end="") #Printing Big
+        print("|") #Printing right side
+        print(" " + "".center(indent2, '-')) #Printing bottom
+        
+    
     
     
     
