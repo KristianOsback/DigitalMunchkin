@@ -17,14 +17,16 @@ class CardType(Enum):
     monsterboostCard = "Monster boost"
     boostCard = "Boost"
 
-totalCardList = []
-doorCardsStack = []
-doorCardsDiscardStack = []
-treasureCardsStack = []
-treasureCardsDiscardStack = []
+
 
 class Cards:
     """The overall card object. Different kind of cards will inherit from this"""
+    totalCardList = []
+    
+    doorCardsStack = []
+    doorCardsDiscardStack = []
+    treasureCardsStack = []
+    treasureCardsDiscardStack = []
     
     Amount = 0
     Left = 0
@@ -60,8 +62,7 @@ class TreasureCards(Cards):
         
         self.itemValue = itemValue
         print("(Initializing {})".format(self.itemValue))
- 
-       
+
     
 class GearCards(TreasureCards):    
      
@@ -77,11 +78,13 @@ class GearCards(TreasureCards):
         print("(Initializing {})".format(self.special))
         print("(Initializing {})".format(self.limitation))  
       
+      
 class MonsterCards(Cards):    
      
-    def __init__(self, monsterLevel, badStuff): 
+    def __init__(self, cardNumber, cardName, cardType, cardDescription, monsterLevel, badStuff): 
         """Initializes the data."""
         
+        super(MonsterCards, self).__init__(cardNumber, cardName, cardType, cardDescription)
         self.monsterLevel = monsterLevel
         self.badStuff = badStuff
         print("(Initializing {})".format(self.monsterLevel))
@@ -90,26 +93,30 @@ class MonsterCards(Cards):
         
 class CurseCards(Cards):    
      
-    def __init__(self, curseEffect): 
+    def __init__(self, cardNumber, cardName, cardType, cardDescription, curseEffect): 
         """Initializes the data."""
         
+        super(MonsterCards, self).__init__(cardNumber, cardName, cardType, cardDescription)
         self.curseEffect = curseEffect
         print("(Initializing {})".format(self.curseEffect))
         
 
 class HirelingCards(Cards):    
      
-    def __init__(self, hirelingBonus): 
+    def __init__(self, cardNumber, cardName, cardType, cardDescription, hirelingBonus): 
         """Initializes the data."""
         
+        super(MonsterCards, self).__init__(cardNumber, cardName, cardType, cardDescription)
         self.hirelingBonus = hirelingBonus
         print("(Initializing {})".format(self.hirelingBonus))
    
    
 class ClassCards(Cards):    
      
-    def __init__(self): 
+    def __init__(self, cardNumber, cardName, cardType, cardDescription): 
         """Initializes the data."""
+        
+        super(MonsterCards, self).__init__(cardNumber, cardName, cardType, cardDescription)
   
     
     
@@ -118,12 +125,15 @@ class RaceCards(Cards):
     def __init__(self): 
         """Initializes the data."""
         
+        super(MonsterCards, self).__init__(cardNumber, cardName, cardType, cardDescription)
+        
 
 class ModifierCards(Cards):    
      
-    def __init__(self, modifier): 
+    def __init__(self, cardNumber, cardName, cardType, cardDescription, modifier): 
         """Initializes the data."""
         
+        super(MonsterCards, self).__init__(cardNumber, cardName, cardType, cardDescription)
         self.modifier = modifier
         print("(Initializing {})".format(self.specialSkill))
     
@@ -163,9 +173,10 @@ class LevelCards(GearCards):
 
 class MonsterboosterCards(Cards):    
      
-    def __init__(self, boost): 
+    def __init__(self, cardNumber, cardName, cardType, cardDescription, boost): 
         """Initializes the data."""
         
+        super(MonsterCards, self).__init__(cardNumber, cardName, cardType, cardDescription)
         self.boost = boost
         print("(Initializing {})".format(self.boost))
         
@@ -174,23 +185,24 @@ class MonsterboosterCards(Cards):
 #creating door card stack
 #read csv, and split on "," the line
 with open('MunchkinDoorCards.csv', "r") as csv_file:
-    reader = csv.reader(csv_file)
+    reader = csv.DictReader(csv_file)
 
     #loop through the csv list
     for row in reader:
+        print(row)
         if len(row) > 1: #checking for empty rows 
-            if row[3] == "Monster"
-                doorCardsStack.append(MonsterCards(row[0], row[2], row[3], row[9], row[4], row[5]))
-            #elif row[3] == "Curse"
-                doorCardsStack.append(CurseCards(row[0], row[2], row[3], row[9], row[5], row[5]))
-            #elif row[3] == "Class"
-                doorCardsStack.append(ClassCards(row[0], row[2], row[3], row[9], row[5]))
-            #elif row[3] == "Race"
-                doorCardsStack.append(RaceCards(row[0], row[2], row[3], row[9], row[5]))
-            #elif row[3] == "Hireling"
-                doorCardsStack.append(HirelingCards(row[0], row[2], row[3], row[9], row[4]))
-            #elif row[3] == "Modifier"
-                doorCardsStack.append(ModifierCards(row[0], row[2], row[3], row[9], row[4]))
+            if row["card_type"] == "Monster":
+                Cards.doorCardsStack.append(MonsterCards(row["card_number"], row["name"], row["card_type"], row["card_description"], row["modifier"], row["bad_stuff"]))
+            #elif row[3] == "Curse":
+                #doorCardsStack.append(CurseCards(row[0], row[2], row[3], row[9], row[5], row[5]))
+            #elif row[3] == "Class":
+                #doorCardsStack.append(ClassCards(row[0], row[2], row[3], row[9], row[5]))
+            #elif row[3] == "Race":
+                #doorCardsStack.append(RaceCards(row[0], row[2], row[3], row[9], row[5]))
+            #elif row[3] == "Hireling":
+                #doorCardsStack.append(HirelingCards(row[0], row[2], row[3], row[9], row[4]))
+            #elif row[3] == "Modifier":
+                #doorCardsStack.append(ModifierCards(row[0], row[2], row[3], row[9], row[4]))
                 
 
 #creating treasure card stack
@@ -201,27 +213,21 @@ with open('MunchkinTreasureCards.csv', "r") as csv_file:
     #loop through the csv list
     for row in reader:
         if len(row) > 1: #checking for empty rows 
-            if row[3] == "Weapon"
-                treasureCardsStack.append(WeaponCards(row[0], row[2], row[3], row[16], row[5], row[13]))
-            #elif row[3] == "Headgear"
-                treasureCardsStack.append(HeadgearCards(row[0], row[2], row[3], row[16], row[5], row[13]))
-            #elif row[3] == "Footgear"
-                treasureCardsStack.append(FootgearCards(row[0], row[2], row[3], row[16], row[5], row[13]))
-            #elif row[3] == "Armour"
-                treasureCardsStack.append(ArmourCards(row[0], row[2], row[3], row[16], row[5], row[13]))
-            #elif row[3] == "GUAL"
-                treasureCardsStack.append(LevelCards(row[0], row[2], row[3], row[16], row[5], row[13]))
+            if row[3] == "Weapon":
+                Cards.treasureCardsStack.append(WeaponCards(row[0], row[2], row[3], row[16], row[5], row[13]))
+            #elif row[3] == "Headgear":
+                #treasureCardsStack.append(HeadgearCards(row[0], row[2], row[3], row[16], row[5], row[13]))
+            #elif row[3] == "Footgear":
+                #treasureCardsStack.append(FootgearCards(row[0], row[2], row[3], row[16], row[5], row[13]))
+            #elif row[3] == "Armour":
+                #treasureCardsStack.append(ArmourCards(row[0], row[2], row[3], row[16], row[5], row[13]))
+            #elif row[3] == "GUAL":
+                #treasureCardsStack.append(LevelCards(row[0], row[2], row[3], row[16], row[5], row[13]))
                 
-                
-                
-                
-                
+    
                 
 print(treasureCardsStack) 
 print(doorCardsStack) 
-
-
-
 
 
 """ Questions

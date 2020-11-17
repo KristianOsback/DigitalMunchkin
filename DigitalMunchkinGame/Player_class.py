@@ -1,21 +1,22 @@
-from Cards_Samlet import CardType
+from Cards_Samlet import Cards
+from dataclass import dataclass
+
+@dataclass
+class Table:
+    armour: Cards = None
+    head: Cards = None
+    foot: Cards= None 
+    hands: cards = None
+    hireling: Cards = None
 
 
 class Player:
-    handCards = []
-    tableCards = [armour = None, head = None, foot = None, hands = None, hireling = None]
-    gender = input('What is your Gender? (Male/Female) \n')
-    race = "Human"
-    playerClass = None
-    level = 1
-    levelTotal = 1
-    gold = 0
     
-    def __init__(self, handCards = [None], tableCards = [armour = None, head = None, foot = None, hands = None, hireling = None], gender = "Male", race = "human", playerClass = None, level = 1, levelTotal = 1, gold = 0, armour = None, head = None, foot = None, hands = None): 
+    def __init__(self, gender, race, handCards = None, tableCards = None, playerClass = None, level = 1, levelTotal = 1, gold = 0): 
         """Initializes the data."""
         
-        self.handCards = handCards
-        self.tableCards = tableCards
+        self.handCards = handCards or []
+        self.tableCards = tableCards or Table()
         self.gender = gender
         self.race = race
         self.playerClass = playerClass

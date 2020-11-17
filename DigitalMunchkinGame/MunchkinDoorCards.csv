@@ -1,4 +1,4 @@
-﻿card_number,card_deck,name,card_type,monster level or battle modifier,bad stuff,class restriction,breed restriction,gender restriction,card_description
+card_number,card_deck,name,card_type,modifier,bad_stuff,class restriction,breed restriction,gender restriction,card_description
 1,door,Platycore,Monster,6,Lose 2 levels,+6 against Wizards,,,Platypus dragon lion thing
 2,door,Pack Rat,Monster,3,Discard item and draw treasure,,,,Small rat with a bit pack
 3,door,Sock Puppet,Monster,1,Discard 2 cards,,,,It socks
