@@ -1,15 +1,18 @@
-def PrintCard():
+import Cards_Samlet
+
+
+def PrintCard(CardItem):
     
     temp_var = []
     indent = 25
     indent2 = 27
 
-    cardNumber = str(6)
-    cardName = "Transferral Potion"
-    cardType = "Item"
-    cardDescription = "Quick transportation"
-    isBig = False
-    itemValue = str(300)
+    cardNumber = CardItem.cardNumber
+    cardName = CardItem.cardName
+    cardType = CardItem.cardType
+    cardDescription = CardItem.cardDescription
+    isBig = CardItem.big
+    value = CardItem.itemValue
 
     print(" " + "".center(indent2, '-')) #printing top
     
@@ -33,9 +36,9 @@ def PrintCard():
     
     #printing cardType
     print("".center(0, ' '), end=" ")
-    print("|", end=" ") #Printing left side
-    print(cardType.center((indent - len(cardType)), " "), end=" ") #Printing cardNumber
-    print("|".rjust(indent - (len(cardType) + 18), " ")) #Printing right side
+    print("|", end="") #Printing left side
+    print(cardType.center((indent), " "), end="") #Printing cardNumber
+    print("|") #Printing right side
     
     #Printing empty space
     for i in range(5):
@@ -59,7 +62,7 @@ def PrintCard():
     #printing Big and itemValue
     print("".center(0, ' '), end=" ")
     print("|", end="") #Printing left side
-    print(itemValue, end="") #Printing cardNumber
+    print(value, end="") #Printing cardNumber
     if isBig == True:
         print("Big".rjust((indent-3), " "), end="") #Printing Big
         print("|") #Printing right side
@@ -71,8 +74,8 @@ def PrintCard():
         
     
     
-    
-    
-    
 
-PrintCard()
+    
+    
+#for x in Cards_Samlet.Cards:
+   #PrintCard(Cards_Samlet.Cards.treasureCardsStack[x])

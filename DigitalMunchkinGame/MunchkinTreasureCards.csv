@@ -1,74 +1,74 @@
-﻿card_number,card_deck,name,card_type,battle_modifier,price,hands,Armour,feet,head,class_limit,race_limit,gender_limit,special_use,big,roll_modifier,expansion,card_description
-1,treasure,Staff Of Napalm,Weapon,5,800,1,0,,,{'Wizard':True},{},{},{},,0,Munchkin,Burning staff
-2,treasure,Really Impressive Title,Item,3,0,0,1,,,{},{},{},{},,0,Munchkin,Impressive and inviable
-3,treasure,Cheese Grater Of Peace,Weapon,3,400,1,,,,{'Cleric':True},{},{},{},,0,Munchkin,Big Cheese
-4,treasure,Instant Wall,Item,0,300,0,,,,{},{},{},{'Fight':'End'},,0,Munchkin,Stops everything for sure
-5,treasure,Freezing Explosive Potion,Item,3,100,0,,,,{},{},{},{'Sides':'Both'},,0,Munchkin,hot 'n' cold
-"6,treasure,Transferral Potion,Item,0,300,0,,,,{},{},{},""{'Fight':'End','Room':'Loot','Player':'Choose'}"",,0,Munchkin,Quick transportation"
-7,treasure,Potion of Confusion,Item,3,100,0,,,,{},{},{},{Sides:Both},,0,Munchkin,Where have I put this?
-8,treasure,Rat On A Stick,Weapon,1,0,1,,,,{},{},{},{Run Away:Level 8},,0,Munchkin,Eeew!
-9,treasure,Sneaky Bastard Sword,Weapon,2,400,1,,,,{},{},{},{},,0,Munchkin,Surprice attack
-10,treasure,Wand Of Dowsing,Item,0,1100,0,,,,{},{},{},{Discard:Add Card},,0,Munchkin,Yaaawn
-11,treasure,Wishing Ring 1,Item,0,500,0,,,,{},{},{},{Curse:Cancel},,0,Munchkin,Curse B-gone
-12,treasure,Boil An Anthill,GUAL,0,0,0,,,,{},{},{},{Level:1},,0,Munchkin,Just satisfying
-13,treasure,Flaming Armour,Armour,2,400,0,1,,,{},{},{},{},,0,Munchkin,Smoking!
-14,treasure,Bow With Ribbons,Weapon,4,800,2,,,,{'Elf':True},{},{},{},,0,Munchkin,Bowney
-15,treasure,Boots of Butt-Kicking,Footwear,2,400,0,,1,,{},{},{},{},,0,Munchkin,Great foodwear against stupid people
-16,treasure,Bribe GM With Food,GUAL,0,0,0,,,,{},{},{},{Level:1},,0,Munchkin,Enjoy the refreshments
-17,treasure,Hoard!,Item,0,0,0,,,,{},{},{},{Treasure:3},,0,Munchkin,Great Gear
-"18,treasure,Pollymorph Potion,Item,0,1300,0,,,,{},{},{},""{Fight:End,Treasure:Monster.treasure}"",,0,Munchkin,New style"
-"19,treasure,""1,000 Gold Pieces"",GUAL,0,0,0,,,,{},{},{},{Level:1},,0,Munchkin,Kaching!"
-"20,treasure,Kill The Hireling,GUAL,0,0,0,,,,{},{},{},""{Remove: Hireling, Level:1}"",,0,Munchkin,One less interferrer"
-"21,treasure,Hireling,Item,1,0,0,,,,{},{},{},""{Hands:1, Run Away:True,Big:1}"",,0,Munchkin,New Helper"
-22,treasure,Whine At The GM,GUAL,0,0,0,,,,{},{},{},{Level:1},,0,Munchkin,Shout it out!
-"23,treasure,Friendship Potion,Item,0,200,0,,,,{},{},{},""{Fight:End,Room:Loot}"",,0,Munchkin,Lets be friends"
-"24,treasure,Steal A Level,GUAL,0,0,0,,,,{},{},{},""{Level:1,Player:Choose,Level:-1}"",,0,Munchkin,What is yours is now mine"
-25,treasure,Convenient Addition Error,GUAL,0,0,0,,,,{},{},{},{Level:1},,0,Munchkin,Boom! That just happened
-26,treasure,Bad-Ass Bandana,Armour,3,400,0,,,1,{},{'Human':True},{},{},,0,Munchkin,Just because I can
-27,treasure,Shield of Ubiquity,Weapon,4,600,1,,,,{'Wizard':True},{},{},{},1,0,Munchkin,Like everywhere
-28,treasure,Invoke Obscure Rules,GUAL,0,0,0,,,,{},{},{},{Level:1},,0,Munchkin,I make the rules!
-"29,treasure,Magic Lamp,Item,0,500,0,,,,{},{},{},""{Fight:End, Treasure:Monster.treasure}"",,0,Munchkin,Genie come out!"
-30,treasure,Leather Armour,Armour,1,200,0,1,,,{},{},{},{},,0,Munchkin,Because it's leather
-31,treasure,Eleven-Foot Pole,Weapon,1,200,2,,,,{},{},{},{},,0,Munchkin,Big Stick
-32,treasure,Buckler Of Swashing,Weapon,2,400,1,,,,{},{},{},{},,0,Munchkin,Splash
-33,treasure,Wishing Ring 2,Item,0,500,0,,,,{},{},{},{Curse:Cancel},,0,Munchkin,Curse B-gone
-34,treasure,Sleep Potion,Item,2,100,0,,,,{},{},{},{Sides:Both},,0,Munchkin,ZzZzZzZ
-35,treasure,Singing & Dancing Sword,Item,2,400,0,,,,{'Thief':False},{},{},{},,0,Munchkin,Tra lala lala
-"36,treasure,Mutilate The Bodies,GUAL,0,0,0,,,,{},{},{},""{Level:1,Fight:After}"",,0,Munchkin,First Blood!"
-37,treasure,Swiss Army Polearm,Weapon,4,600,2,,,,{},{'Human':True},{},{},1,0,Munchkin,It is long and sharp
-38,treasure,Helm Of Courage,Headgear,1,200,0,,,1,{},{},{},{},,0,Munchkin,I feel brave
-39,treasure,Horny Helmet,Headgear,1,600,0,,,1,{},{},{},{'Elf':2},,0,Munchkin,VERY horny
-40,treasure,Flaming Poison Potion,Item,3,100,0,,,,{},{},{},{Sides:Both},,0,Munchkin,Don't drink
-41,treasure,Magic Missle,Item,5,300,0,,,,{},{},{},{Sides:Both},,0,Munchkin,Get down!
-"42,treasure,Doppelganger,Item,0,300,0,,,,{},{},{},""{Battle Modifer:Player.power, Help:False}"",,0,Munchkin,Me 2"
-43,treasure,Broad Sword,Weapon,3,400,1,,,,{},{},{'Female':True},{},,0,Munchkin,Heavy but sharp
-44,treasure,Pantyhose Of Giant Strength,Armour,3,600,0,,,,{'Warrior':False},{},{},{},,0,Munchkin,I feel powerful!
-45,treasure,Boots Of Running Really Fast,Armour,0,400,0,,1,,{},{},{},{},,2,Munchkin,Speed up!
-46,treasure,Hammer Of Kneecapping,Weapon,4,600,1,,,,{'Dwarf':True},{},{},{},,0,Munchkin,Auch!
-47,treasure,Electric Radioactive Acid Potion,Item,5,200,0,,,,{},{},{},{Sides:Both},,0,Munchkin,Don't drink
-48,treasure,Pointy Hat Of Power,Headgear,3,400,0,,,1,{'Wizard':True},{},{},{},,0,Munchkin,Very pointy
-49,treasure,Mace Of Sharpness,Weapon,4,600,1,,,,{'Cleric':True},{},{},{},,0,Munchkin,What's the point?
-50,treasure,Gentlemen's Club,Weapon,3,400,1,,,,{},{},{'Male':True},{},,0,Munchkin,Not for ladies
-51,treasure,Potion Of General Studliness,GUAL,0,0,0,,,,{},{},{},{Level:1},,0,Munchkin,Don't drink
-52,treasure,Huge Rock,Weapon,3,0,2,,,,{},{},{},{},1,0,Munchkin,Hits hard, very hard
-53,treasure,Sandals Of Protection,Footgear,0,700,0,,1,,{},{},{},{Drawn Curse:False},,0,Munchkin,Good comfort for your feet
-54,treasure,Spiky Knees,,1,200,0,,,,{},{},{},{},,0,Munchkin,Do not wear them inside out
-55,treasure,Chainsaw Of Bloody Dismemberment,Weapon,3,600,2,,,,{},{},{},{},1,0,Munchkin,Great for slicing meat
-56,treasure,Mithril Armour,Armour,3,600,0,1,,,{'Wizard':False},{},{},{},1,0,Munchkin,Shiny!
-57,treasure,Nasty Tasting Sports Drink,Item,2,200,0,,,,{},{},{},{Sides:Both},1,0,Munchkin,Good and aweful at the same time
-"58,treasure,Potion Of Halitosis,Item,2,100,0,,,,{},{},{},""{Sides:Both, Flying Nose:Kill}"",,0,Munchkin,Like garlic but worse"
-"59,treasure,Flask Of Glue,Item,0,100,0,,,,{},{},{},""{Roll:Again,Roll:After}"",,0,Munchkin,Warning! Sticky"
-60,treasure,Potion Of Idiotic Bravery,Item,2,100,0,,,,{},{},{},{Sides:Both},,0,Munchkin,Makes you more idiotic than Brave
-61,treasure,Invisibility Potion,Item,0,200,0,,,,{},{},{},{Roll:True},,0,Munchkin,Where is it?
-62,treasure,Dagger Of Treachery,Weapon,3,400,1,,,,{'Thief':True},{},{},{},,0,Munchkin,Do not turn your back to it
-63,treasure,Limburger And Anchovy Sandwich,Weapon,3,400,0,,,,{},{'Halfling':True},{},{},,0,Munchkin,Eew
-64,treasure,Pretty Balloons,Item,5,0,0,,,,{},{},{},{Sides:Both},,0,Munchkin,Pretty
-65,treasure,Yuppie Water,Item,0,100,0,,,,{},{'Elf':True},{},{Elf:2},,0,Munchkin,Yuppie
-66,treasure,Rapier Of Unfairness,Weapon,3,600,1,,,,{},{'Elf':True},{},{},,0,Munchkin,It is just not fair
-67,treasure,Tuba Of Charm,Weapon,0,300,1,,,,{},{},{},{Treasure:1},1,3,Munchkin,Charming honk
-68,treasure,Cloak Of Obscurity,Armour,4,600,0,,,,{'Thief':True},{},{},{},,0,Munchkin,Confusing
-69,treasure,Stepladder,Weapon,3,400,0,,,,{},{'Halfling':True},{},{},1,0,Munchkin,For small people or dwarfs
-70,treasure,Kneepads Of Allure,Item,0,600,0,,,,{'Cleric':False},{},{},{Help:Higher Player},,0,Munchkin,Tempting
-71,treasure,Short Wide Armour,Armour,3,400,0,1,,,{},{'Dwarf':True},{},{},,0,Munchkin,Dwarf made for sure
-72,treasure,Slimy Armour,Armour,1,200,0,1,,,{},{},{},{},,0,Munchkin,Eew
-73,treasure,Loaded Die,Item,0,300,0,,,,{},{},{},{Roll:True},,0,Munchkin,Almost not cheating
+card_number,card_deck,name,card_type,battle_modifier,price,hands,Armour,feet,head,class_limit,race_limit,gender_limit,special_use,big,roll_modifier,card_description
+1,treasure,Staff Of Napalm,Weapon,5,800,1,0,,,{'Wizard':True},{},{},{},Big,0,Burning staff
+2,treasure,Really Impressive Title,Item,3,0,0,1,,,{},{},{},{},Small,0,Impressive and inviable
+3,treasure,Cheese Grater Of Peace,Weapon,3,400,1,,,,{'Cleric':True},{},{},{},,0,Big Cheese
+4,treasure,Instant Wall,Item,0,300,0,,,,{},{},{},{'Fight':'End'},Small,0,Stops everything for sure
+5,treasure,Freezing Explosive Potion,Item,3,100,0,,,,{},{},{},{'Sides':'Both'},Small,0,hot 'n' cold
+6,treasure,Transferral Potion,Item,0,300,0,,,,{},{},{},{'Fight':'End','Room':'Loot','Player':'Choose'},Small,0,Quick transportation
+7,treasure,Potion of Confusion,Item,3,100,0,,,,{},{},{},{Sides:Both},Small,0,Where have I put this?
+8,treasure,Rat On A Stick,Weapon,1,0,1,,,,{},{},{},{Run Away:Level 8},Small,0,Eeew!
+9,treasure,Sneaky Bastard Sword,Weapon,2,400,1,,,,{},{},{},{},Small,0,Surprice attack
+10,treasure,Wand Of Dowsing,Item,0,1100,0,,,,{},{},{},{Discard:Add Card},Small,0,Yaaawn
+11,treasure,Wishing Ring 1,Item,0,500,0,,,,{},{},{},{Curse:Cancel},Small,0,Curse B-gone
+12,treasure,Boil An Anthill,GUAL,1,Not sold,0,,,,{},{},{},{Level:1},Small,0,Just satisfying
+13,treasure,Flaming Armour,Armour,2,400,0,1,,,{},{},{},{},Small,0,Smoking!
+14,treasure,Bow With Ribbons,Weapon,4,800,2,,,,{'Elf':True},{},{},{},Small,0,Bowney
+15,treasure,Boots of Butt-Kicking,Footwear,2,400,0,,1,,{},{},{},{},Small,0,Great foodwear against stupid people
+16,treasure,Bribe GM With Food,GUAL,1,Not sold,0,,,,{},{},{},{Level:1},Small,0,Enjoy the refreshments
+17,treasure,Hoard!,Item,0,0,0,,,,{},{},{},{Treasure:3},Small,0,Great Gear
+18,treasure,Pollymorph Potion,Item,0,1300,0,,,,{},{},{},{Fight:End,Treasure:Monster.treasure},Small,0,New style
+19,treasure,1,000 Gold Pieces,GUAL,1,Not sold,0,,,,{},{},{},{Level:1},Small,0,Kaching!
+20,treasure,Kill The Hireling,GUAL,1,Not sold,0,,,,{},{},{},{Remove: Hireling, Level:1},Small,0,One less interferrer
+21,treasure,Hireling,Item,1,0,0,,,,{},{},{},{Hands:1, Run Away:True,Big:1},Small,0,New Helper
+22,treasure,Whine At The GM,GUAL,1,Not sold,0,,,,{},{},{},{Level:1},Small,0,Shout it out!
+23,treasure,Friendship Potion,Item,0,200,0,,,,{},{},{},{Fight:End,Room:Loot},Small,0,Lets be friends
+24,treasure,Steal A Level,GUAL,1,Not sold,0,,,,{},{},{},{Level:1,Player:Choose,Level:-1},Small,0,What is yours is now mine
+25,treasure,Convenient Addition Error,GUAL,1,Not sold,0,,,,{},{},{},{Level:1},Small,0,Boom! That just happened
+26,treasure,Bad-Ass Bandana,Armour,3,400,0,,,1,{},{'Human':True},{},{},Small,0,Just because I can
+27,treasure,Shield of Ubiquity,Weapon,4,600,1,,,,{'Wizard':True},{},{},{},Big,0,Like everywhere
+28,treasure,Invoke Obscure Rules,GUAL,1,Not sold,0,,,,{},{},{},{Level:1},Small,0,I make the rules!
+29,treasure,Magic Lamp,Item,0,500,0,,,,{},{},{},{Fight:End, Treasure:Monster.treasure},Small,0,Genie come out!
+30,treasure,Leather Armour,Armour,1,200,0,1,,,{},{},{},{},Small,0,Because it's leather
+31,treasure,Eleven-Foot Pole,Weapon,1,200,2,,,,{},{},{},{},Small,0,Big Stick
+32,treasure,Buckler Of Swashing,Weapon,2,400,1,,,,{},{},{},{},Small,0,Splash
+33,treasure,Wishing Ring 2,Item,0,500,0,,,,{},{},{},{Curse:Cancel},Small,0,Curse B-gone
+34,treasure,Sleep Potion,Item,2,100,0,,,,{},{},{},{Sides:Both},Small,0,ZzZzZzZ
+35,treasure,Singing & Dancing Sword,Item,2,400,0,,,,{'Thief':False},{},{},{},Small,0,Tra lala lala
+36,treasure,Mutilate The Bodies,GUAL,1,Not sold,0,,,,{},{},{},{Level:1,Fight:After},Small,0,First Blood!
+37,treasure,Swiss Army Polearm,Weapon,4,600,2,,,,{},{'Human':True},{},{},Big,0,It is long and sharp
+38,treasure,Helm Of Courage,Headgear,1,200,0,,,1,{},{},{},{},Small,0,I feel brave
+39,treasure,Horny Helmet,Headgear,1,600,0,,,1,{},{},{},{'Elf':2},Small,0,VERY horny
+40,treasure,Flaming Poison Potion,Item,3,100,0,,,,{},{},{},{Sides:Both},Small,0,Don't drink
+41,treasure,Magic Missle,Item,5,300,0,,,,{},{},{},{Sides:Both},Small,0,Get down!
+42,treasure,Doppelganger,Item,0,300,0,,,,{},{},{},{Battle Modifer:Player.power, Help:False},Small,0,Me 2
+43,treasure,Broad Sword,Weapon,3,400,1,,,,{},{},{'Female':True},{},Small,0,Heavy but sharp
+44,treasure,Pantyhose Of Giant Strength,Armour,3,600,0,,,,{'Warrior':False},{},{},{},Small,0,I feel powerful!
+45,treasure,Boots Of Running Really Fast,Armour,0,400,0,,1,,{},{},{},{},Small,2,Speed up!
+46,treasure,Hammer Of Kneecapping,Weapon,4,600,1,,,,{'Dwarf':True},{},{},{},Small,0,Auch!
+47,treasure,Electric Radioactive Acid Potion,Item,5,200,0,,,,{},{},{},{Sides:Both},Small,0,Don't drink
+48,treasure,Pointy Hat Of Power,Headgear,3,400,0,,,1,{'Wizard':True},{},{},{},Small,0,Very pointy
+49,treasure,Mace Of Sharpness,Weapon,4,600,1,,,,{'Cleric':True},{},{},{},Small,0,What's the point?
+50,treasure,Gentlemen's Club,Weapon,3,400,1,,,,{},{},{'Male':True},{},Small,0,Not for ladies
+51,treasure,Potion Of General Studliness,GUAL,1,Not sold,0,,,,{},{},{},{Level:1},Small,0,Don't drink
+52,treasure,Huge Rock,Weapon,3,0,2,,,,{},{},{},{},Big,0,Hits hard - very hard
+53,treasure,Sandals Of Protection,Footgear,0,700,0,,1,,{},{},{},{Drawn Curse:False},Small,0,Good comfort for your feet
+54,treasure,Spiky Knees,,1,200,0,,,,{},{},{},{},Small,0,Do not wear them inside out
+55,treasure,Chainsaw Of Bloody Dismemberment,Weapon,3,600,2,,,,{},{},{},{},Big,0,Great for slicing meat
+56,treasure,Mithril Armour,Armour,3,600,0,1,,,{'Wizard':False},{},{},{},Big,0,Shiny!
+57,treasure,Nasty Tasting Sports Drink,Item,2,200,0,,,,{},{},{},{Sides:Both},Small,0,Good and aweful at the same time
+58,treasure,Potion Of Halitosis,Item,2,100,0,,,,{},{},{},{Sides:Both, Flying Nose:Kill},Small,0,Like garlic but worse
+59,treasure,Flask Of Glue,Item,0,100,0,,,,{},{},{},{Roll:Again,Roll:After},Small,0,Warning! Sticky
+60,treasure,Potion Of Idiotic Bravery,Item,2,100,0,,,,{},{},{},{Sides:Both},Small,0,Makes you more idiotic than Brave
+61,treasure,Invisibility Potion,Item,0,200,0,,,,{},{},{},{Roll:True},Small,0,Where is it?
+62,treasure,Dagger Of Treachery,Weapon,3,400,1,,,,{'Thief':True},{},{},{},Small,0,Do not turn your back to it
+63,treasure,Limburger And Anchovy Sandwich,Weapon,3,400,0,,,,{},{'Halfling':True},{},{},Small,0,Eew
+64,treasure,Pretty Balloons,Item,5,0,0,,,,{},{},{},{Sides:Both},Small,0,Pretty
+65,treasure,Yuppie Water,Item,0,100,0,,,,{},{'Elf':True},{},{Elf:2},Small,0,Yuppie
+66,treasure,Rapier Of Unfairness,Weapon,3,600,1,,,,{},{'Elf':True},{},{},Small,0,It is just not fair
+67,treasure,Tuba Of Charm,Weapon,0,300,1,,,,{},{},{},{Treasure:1},Big,3,Charming honk
+68,treasure,Cloak Of Obscurity,Armour,4,600,0,,,,{'Thief':True},{},{},{},Small,0,Confusing
+69,treasure,Stepladder,Weapon,3,400,0,,,,{},{'Halfling':True},{},{},Big,0,For small people or dwarfs
+70,treasure,Kneepads Of Allure,Item,0,600,0,,,,{'Cleric':False},{},{},{Help:Higher Player},Small,0,Tempting
+71,treasure,Short Wide Armour,Armour,3,400,0,1,,,{},{'Dwarf':True},{},{},Small,0,Dwarf made for sure
+72,treasure,Slimy Armour,Armour,1,200,0,1,,,{},{},{},{},Small,0,Eew
+73,treasure,Loaded Die,Item,0,300,0,,,,{},{},{},{Roll:True},Small,0,Almost not cheating

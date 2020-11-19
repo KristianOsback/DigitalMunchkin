@@ -18,9 +18,11 @@ class CardType(Enum):
     boostCard = "Boost"
 
 
-
 class Cards:
-    """The overall card object. Different kind of cards will inherit from this"""
+    """The overall card object. Different kind of cards will inherit from this
+    This class splits in DoorCards and TreasureCards. TreasureCards inherit to GearCards. 
+
+    """
     totalCardList = []
     
     doorCardsStack = []
@@ -43,7 +45,6 @@ class Cards:
         print("(Initializing {})".format(self.cardType))
         print("(Initializing {})".format(self.cardDescription))
 
-
         Cards.totalCardList.append(self)
         Cards.Amount += 1 #why does this not work? Will work, måske skal den ændres nu hvor det er class variables. 
         Cards.Left += 1 #Counting total cards in deck
@@ -57,29 +58,35 @@ class Cards:
        
 class TreasureCards(Cards):    
      
-    def __init__(self, itemValue): 
+    def __init__(self, cardNumber, cardName, cardType, cardDescription, levelBonus, itemValue): 
         """Initializes the data."""
         
+        super(TreasureCards, self).__init__(cardNumber, cardName, cardType, cardDescription)
+        self.levelBonus = levelBonus
         self.itemValue = itemValue
+        print("(Initializing {})".format(self.levelBonus))
         print("(Initializing {})".format(self.itemValue))
+
+
+class DoorCards(Cards):    
+     
+    def __init__(self, cardNumber, cardName, cardType, cardDescription): 
+        """Initializes the data."""
+        
+        super(DoorCards, self).__init__(cardNumber, cardName, cardType, cardDescription)
 
     
 class GearCards(TreasureCards):    
      
-    def __init__(self, bonus, special, limitation, big): 
+    def __init__(self, cardNumber, cardName, cardType, cardDescription, levelBonus, itemValue, big): 
         """Initializes the data."""
         
-        self.bonus = bonus
-        self.special = special
-        self.limitation = limitation
+        super(GearCards, self).__init__(cardNumber, cardName, cardType, cardDescription, levelBonus, itemValue)
         self.big = big
         print("(Initializing {})".format(self.itemValue))
-        print("(Initializing {})".format(self.bonus))
-        print("(Initializing {})".format(self.special))
-        print("(Initializing {})".format(self.limitation))  
       
       
-class MonsterCards(Cards):    
+class MonsterCards(DoorCards):    
      
     def __init__(self, cardNumber, cardName, cardType, cardDescription, monsterLevel, badStuff): 
         """Initializes the data."""
@@ -91,95 +98,90 @@ class MonsterCards(Cards):
         print("(Initializing {})".format(self.badStuff))
         
         
-class CurseCards(Cards):    
+class CurseCards(DoorCards):    
      
     def __init__(self, cardNumber, cardName, cardType, cardDescription, curseEffect): 
         """Initializes the data."""
         
-        super(MonsterCards, self).__init__(cardNumber, cardName, cardType, cardDescription)
+        super(CurseCards, self).__init__(cardNumber, cardName, cardType, cardDescription)
         self.curseEffect = curseEffect
         print("(Initializing {})".format(self.curseEffect))
         
 
-class HirelingCards(Cards):    
+class HirelingCards(DoorCards):    
      
     def __init__(self, cardNumber, cardName, cardType, cardDescription, hirelingBonus): 
         """Initializes the data."""
         
-        super(MonsterCards, self).__init__(cardNumber, cardName, cardType, cardDescription)
+        super(HirelingCards, self).__init__(cardNumber, cardName, cardType, cardDescription)
         self.hirelingBonus = hirelingBonus
         print("(Initializing {})".format(self.hirelingBonus))
    
    
-class ClassCards(Cards):    
+class ClassCards(DoorCards):    
      
     def __init__(self, cardNumber, cardName, cardType, cardDescription): 
         """Initializes the data."""
         
-        super(MonsterCards, self).__init__(cardNumber, cardName, cardType, cardDescription)
+        super(ClassCards, self).__init__(cardNumber, cardName, cardType, cardDescription)
   
     
-    
-class RaceCards(Cards):    
+class RaceCards(DoorCards):    
      
-    def __init__(self): 
+    def __init__(self, cardNumber, cardName, cardType, cardDescription): 
         """Initializes the data."""
         
-        super(MonsterCards, self).__init__(cardNumber, cardName, cardType, cardDescription)
+        super(RaceCards, self).__init__(cardNumber, cardName, cardType, cardDescription)
         
 
-class ModifierCards(Cards):    
+class ModifierCards(DoorCards):    
      
     def __init__(self, cardNumber, cardName, cardType, cardDescription, modifier): 
         """Initializes the data."""
         
-        super(MonsterCards, self).__init__(cardNumber, cardName, cardType, cardDescription)
+        super(ModifierCards, self).__init__(cardNumber, cardName, cardType, cardDescription)
         self.modifier = modifier
-        print("(Initializing {})".format(self.specialSkill))
+        print("(Initializing {})".format(self.modifier))
     
        
 class HeadgearCards(GearCards):    
      
-    def __init__(self): 
+    def __init__(self, cardNumber, cardName, cardType, cardDescription, levelBonus, itemValue, big): 
         """Initializes the data."""
+        
+        super(HeadgearCards, self).__init__(cardNumber, cardName, cardType, cardDescription, levelBonus, itemValue, big)
         
         
 class FootgearCards(GearCards):    
      
-    def __init__(self): 
+    def __init__(self, cardNumber, cardName, cardType, cardDescription, levelBonus, itemValue, big): 
         """Initializes the data."""
        
+        super(FootgearCards, self).__init__(cardNumber, cardName, cardType, cardDescription, levelBonus, itemValue, big)
+        
         
 class ArmourCards(GearCards):    
      
-    def __init__(self): 
+    def __init__(self, cardNumber, cardName, cardType, cardDescription, levelBonus, itemValue, big): 
         """Initializes the data."""
+        
+        super(ArmourCards, self).__init__(cardNumber, cardName, cardType, cardDescription, levelBonus, itemValue, big)
         
         
 class WeaponCards(GearCards):    
      
-    def __init__(self, twoHanded): 
+    def __init__(self, cardNumber, cardName, cardType, cardDescription, levelBonus, itemValue, big): 
         """Initializes the data."""
         
-        self.twoHanded = twoHanded
-        print("(Initializing {})".format(self.twoHanded))
+        super(WeaponCards, self).__init__(cardNumber, cardName, cardType, cardDescription, levelBonus, itemValue, big)
+            
         
-        
-class LevelCards(GearCards):    
+class LevelCards(TreasureCards):    
      
-    def __init__(self): 
-        """Initializes the data."""
-     
-
-class MonsterboosterCards(Cards):    
-     
-    def __init__(self, cardNumber, cardName, cardType, cardDescription, boost): 
+    def __init__(self, cardNumber, cardName, cardType, cardDescription, levelBonus, itemValue): 
         """Initializes the data."""
         
-        super(MonsterCards, self).__init__(cardNumber, cardName, cardType, cardDescription)
-        self.boost = boost
-        print("(Initializing {})".format(self.boost))
-        
+        super(LevelCards, self).__init__(cardNumber, cardName, cardType, cardDescription, levelBonus, itemValue)
    
 
 #creating door card stack
@@ -193,41 +195,41 @@ with open('MunchkinDoorCards.csv', "r") as csv_file:
         if len(row) > 1: #checking for empty rows 
             if row["card_type"] == "Monster":
                 Cards.doorCardsStack.append(MonsterCards(row["card_number"], row["name"], row["card_type"], row["card_description"], row["modifier"], row["bad_stuff"]))
-            #elif row[3] == "Curse":
-                #doorCardsStack.append(CurseCards(row[0], row[2], row[3], row[9], row[5], row[5]))
-            #elif row[3] == "Class":
-                #doorCardsStack.append(ClassCards(row[0], row[2], row[3], row[9], row[5]))
-            #elif row[3] == "Race":
-                #doorCardsStack.append(RaceCards(row[0], row[2], row[3], row[9], row[5]))
-            #elif row[3] == "Hireling":
-                #doorCardsStack.append(HirelingCards(row[0], row[2], row[3], row[9], row[4]))
-            #elif row[3] == "Modifier":
-                #doorCardsStack.append(ModifierCards(row[0], row[2], row[3], row[9], row[4]))
+            elif row["card_type"] == "Curse":
+                Cards.doorCardsStack.append(CurseCards(row["card_number"], row["name"], row["card_type"], row["card_description"], row["bad_stuff"]))
+            elif row["card_type"] == "Class":
+                Cards.doorCardsStack.append(ClassCards(row["card_number"], row["name"], row["card_type"], row["card_description"]))
+            elif row["card_type"] == "Race":
+                Cards.doorCardsStack.append(RaceCards(row["card_number"], row["name"], row["card_type"], row["card_description"]))
+            elif row["card_type"] == "Hireling":
+                Cards.doorCardsStack.append(HirelingCards(row["card_number"], row["name"], row["card_type"], row["card_description"], row["modifier"]))
+            elif row["card_type"] == "Modifier":
+                Cards.doorCardsStack.append(ModifierCards(row["card_number"], row["name"], row["card_type"], row["card_description"], row["modifier"]))
                 
 
 #creating treasure card stack
 #read csv, and split on "," the line
 with open('MunchkinTreasureCards.csv', "r") as csv_file:
-    reader = csv.reader(csv_file)
+    reader = csv.DictReader(csv_file)
 
     #loop through the csv list
     for row in reader:
         if len(row) > 1: #checking for empty rows 
-            if row[3] == "Weapon":
-                Cards.treasureCardsStack.append(WeaponCards(row[0], row[2], row[3], row[16], row[5], row[13]))
-            #elif row[3] == "Headgear":
-                #treasureCardsStack.append(HeadgearCards(row[0], row[2], row[3], row[16], row[5], row[13]))
-            #elif row[3] == "Footgear":
-                #treasureCardsStack.append(FootgearCards(row[0], row[2], row[3], row[16], row[5], row[13]))
-            #elif row[3] == "Armour":
-                #treasureCardsStack.append(ArmourCards(row[0], row[2], row[3], row[16], row[5], row[13]))
-            #elif row[3] == "GUAL":
-                #treasureCardsStack.append(LevelCards(row[0], row[2], row[3], row[16], row[5], row[13]))
+            if row["card_type"] == "Weapon":
+                Cards.treasureCardsStack.append(WeaponCards(row["card_number"], row["name"], row["card_type"], row["card_description"], row["battle_modifier"], row["price"], row["big"]))
+            elif row["card_type"] == "Headgear":
+                Cards.treasureCardsStack.append(HeadgearCards(row["card_number"], row["name"], row["card_type"], row["card_description"], row["battle_modifier"], row["price"], row["big"]))
+            elif row["card_type"] == "Footgear":
+                Cards.treasureCardsStack.append(FootgearCards(row["card_number"], row["name"], row["card_type"], row["card_description"], row["battle_modifier"], row["price"], row["big"]))
+            elif row["card_type"] == "Armour":
+                Cards.treasureCardsStack.append(ArmourCards(row["card_number"], row["name"], row["card_type"], row["card_description"], row["battle_modifier"], row["price"], row["big"]))
+            elif row["card_type"] == "GUAL":
+                Cards.treasureCardsStack.append(LevelCards(row["card_number"], row["name"], row["card_type"], row["card_description"], row["battle_modifier"], row["price"]))
                 
     
                 
-print(treasureCardsStack) 
-print(doorCardsStack) 
+#print(Cards.treasureCardsStack) 
+#print(Cards.doorCardsStack) 
 
 
 """ Questions

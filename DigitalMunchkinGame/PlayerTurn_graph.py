@@ -14,7 +14,9 @@ H. Turn is ended
 """
 
 
-Computer = Player()
+playerInput = 0
+
+Computer = Player
 P1 = Player #Will later be created in the main game. 
 Players = [Computer, P1]
 
@@ -40,19 +42,44 @@ ConnectionList = { #graph
     "H":[]  
 }
 
-doorCardStartTurn = random.choice(Cards_Samlet.doorCardsStack)
+doorCardStartTurn = random.choice(Cards_Samlet.Cards.doorCardsStack)
 partOfTurn = 1
-if doorCardStartTurn(cardType) == monster: #read card
+if doorCardStartTurn.cardType == "monster": #read card
     partOfTurn = 2
     presentState = "B"
-    print(PlayerTurn[handCards]) #read card
+    for cards in PlayerTurn.handCards:
+        print(PlayerTurn.handCards.name) #read card
+    if doorCardStartTurn.monsterLevel < PlayerTurn.level:
+        print("Victory!")
+        PlayerTurn.level = PlayerTurn.level + 1
+        PlayerTurn.levelTotal = PlayerTurn.levelTotal + 1
+        PlayerTurn.handCards.append(random.choice(Cards_Samlet.Cards.treasureCardsStack))
+        
+  
+elif doorCardStartTurn.cardType == "curse": #read card
+    
         
 else:
     presentState = "C"
+    PlayerTurn.handCards.append(doorCardStartTurn)
+    
+    
+    
+
+"""
+doorCardStartTurn = random.choice(Cards_Samlet.Cards.doorCardsStack)
+partOfTurn = 1
+if doorCardStartTurn.cardType == "monster": #read card
+    partOfTurn = 2
+    presentState = "B"
+    print(PlayerTurn.handCards.) #read card
+    playerInput = input("Click 1 to throw card, click 2 to fight, click 3 to flee")
+    while playerInput
+        
+else:
+    presentState = "C"
+"""
 
 
-
-
-
-print(ConnectionList)
-print(Players)
+#print(ConnectionList)
+#print(Players)

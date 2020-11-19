@@ -1,4 +1,4 @@
-card_number,card_deck,name,card_type,modifier,bad_stuff,class restriction,breed restriction,gender restriction,card_description
+card_number,card_deck,name,card_type,modifier,bad_stuff,class_restriction,breed_restriction,gender_restriction,card_description
 1,door,Platycore,Monster,6,Lose 2 levels,+6 against Wizards,,,Platypus dragon lion thing
 2,door,Pack Rat,Monster,3,Discard item and draw treasure,,,,Small rat with a bit pack
 3,door,Sock Puppet,Monster,1,Discard 2 cards,,,,It socks
@@ -6,9 +6,9 @@ card_number,card_deck,name,card_type,modifier,bad_stuff,class restriction,breed 
 5,door,Lord Yahoo,Monster,5,Discard Headgear,Bards +5,Elves and Halflings +5,,Pure knightly
 6,door,Wannabe Vampire,Monster,12,Lose 3 levels,Cleric win automatically,,,Bloodsucker
 7,door,Plushy Skull,Monster,1,You is turned female,,,+2 against females,Furry
-8,door,Lose your armour,Curse,,,,,,Your armour is smelting
-9,door,Lose your class,Curse,,,,,,Unemployed
-10,door,Lose your race,Curse,,,,,,Humanity for the win
+8,door,Lose your armour,Curse,,armour,,,,Your armour is smelting
+9,door,Lose your class,Curse,,class,,,,Unemployed
+10,door,Lose your race,Curse,,race,,,,Humanity for the win
 11,door,Thief,Class,,,,,,Stealing is life
 12,door,Warrior,Class,,,,,,Fighting all the way
 13,door,Bard,Class,,,,,,Music all day long

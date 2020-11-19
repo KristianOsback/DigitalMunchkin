@@ -1,18 +1,18 @@
 from Cards_Samlet import Cards
-from dataclass import dataclass
+from dataclasses import dataclass
 
 @dataclass
 class Table:
     armour: Cards = None
     head: Cards = None
     foot: Cards= None 
-    hands: cards = None
+    hands: Cards = None
     hireling: Cards = None
 
 
 class Player:
     
-    def __init__(self, gender, race, handCards = None, tableCards = None, playerClass = None, level = 1, levelTotal = 1, gold = 0): 
+    def __init__(self, gender, race, handCards = None, tableCards = None, weaponBonus = 0, armourBonus = 0, headgearBonus = 0, FootgearBonus = 0, playerClass = None, level = 1, levelTotal = 1, gold = 0): 
         """Initializes the data."""
         
         self.handCards = handCards or []
@@ -32,5 +32,16 @@ class Player:
         print("(Initializing {})".format(self.levelTotal))
         print("(Initializing {})".format(self.gold))
 
-    
+    def CheckHandCards:
+        Armour bonus
+        for card in self.handCards:
+            if card.cardType =  "Weapon":
+                if card.levelBonus > self.weaponBonus:
+                    for weaponCards in self.handCards:
+                        if card.cardType =  "Weapon":
+                            self.handCards.remove()
+                    self.handCards.append(card)
+                    
+                    
+                    
 
