@@ -1,5 +1,6 @@
 from enum import Enum #auto can auto number them.
 import csv
+
 class CardType(Enum):
     """The different cardtypes like monstercards, headgear, curses ect."""
     
@@ -40,10 +41,7 @@ class Cards:
         self.cardName = cardName
         self.cardType = cardType
         self.cardDescription = cardDescription
-        print("(Initializing {})".format(self.cardNumber))
-        print("(Initializing {})".format(self.cardName))
-        print("(Initializing {})".format(self.cardType))
-        print("(Initializing {})".format(self.cardDescription))
+
 
         Cards.totalCardList.append(self)
         Cards.Amount += 1 #why does this not work? Will work, måske skal den ændres nu hvor det er class variables. 
@@ -64,8 +62,7 @@ class TreasureCards(Cards):
         super(TreasureCards, self).__init__(cardNumber, cardName, cardType, cardDescription)
         self.levelBonus = levelBonus
         self.itemValue = itemValue
-        print("(Initializing {})".format(self.levelBonus))
-        print("(Initializing {})".format(self.itemValue))
+
 
 
 class DoorCards(Cards):    
@@ -83,7 +80,7 @@ class GearCards(TreasureCards):
         
         super(GearCards, self).__init__(cardNumber, cardName, cardType, cardDescription, levelBonus, itemValue)
         self.big = big
-        print("(Initializing {})".format(self.itemValue))
+
       
       
 class MonsterCards(DoorCards):    
@@ -94,8 +91,7 @@ class MonsterCards(DoorCards):
         super(MonsterCards, self).__init__(cardNumber, cardName, cardType, cardDescription)
         self.monsterLevel = monsterLevel
         self.badStuff = badStuff
-        print("(Initializing {})".format(self.monsterLevel))
-        print("(Initializing {})".format(self.badStuff))
+
         
         
 class CurseCards(DoorCards):    
@@ -105,7 +101,7 @@ class CurseCards(DoorCards):
         
         super(CurseCards, self).__init__(cardNumber, cardName, cardType, cardDescription)
         self.curseEffect = curseEffect
-        print("(Initializing {})".format(self.curseEffect))
+
         
 
 class HirelingCards(DoorCards):    
@@ -115,7 +111,6 @@ class HirelingCards(DoorCards):
         
         super(HirelingCards, self).__init__(cardNumber, cardName, cardType, cardDescription)
         self.hirelingBonus = hirelingBonus
-        print("(Initializing {})".format(self.hirelingBonus))
    
    
 class ClassCards(DoorCards):    
@@ -141,7 +136,6 @@ class ModifierCards(DoorCards):
         
         super(ModifierCards, self).__init__(cardNumber, cardName, cardType, cardDescription)
         self.modifier = modifier
-        print("(Initializing {})".format(self.modifier))
     
        
 class HeadgearCards(GearCards):    
@@ -191,7 +185,6 @@ with open('MunchkinDoorCards.csv', "r") as csv_file:
 
     #loop through the csv list
     for row in reader:
-        print(row)
         if len(row) > 1: #checking for empty rows 
             if row["card_type"] == "Monster":
                 Cards.doorCardsStack.append(MonsterCards(row["card_number"], row["name"], row["card_type"], row["card_description"], row["modifier"], row["bad_stuff"]))

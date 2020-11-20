@@ -12,44 +12,44 @@ class Table:
 
 class Player:
     
-    def __init__(self, gender, race, handCards = None, tableCards = None, weaponBonus = 0, armourBonus = 0, headgearBonus = 0, FootgearBonus = 0, playerClass = None, level = 1, levelTotal = 1, gold = 0): 
+    def __init__(self, gender, race, hand_cards = None, table_cards = None, r_weapon = None,  l_weapon = None,
+                 armour=None, headgear = None, foodgear = None, player_class = None, level = 1, level_total = 1, gold = 0):
         """Initializes the data."""
         
-        self.handCards = handCards or []
-        self.tableCards = tableCards or Table()
+        self.handCards = hand_cards or []
+        self.tableCards = table_cards or Table()
         self.gender = gender
         self.race = race
-        self.playerClass = playerClass
+        self.weaponBonus = weapon_bonus
+        self.armourBonus = armour_bonus
+        self.headgearBonus = headgear_bonus
+        self.footgear_bonus = footgear_bonus
+        self.playerClass = player_class
         self.level = level
-        self.levelTotal = levelTotal
+        self.levelTotal = level_total
         self.gold = gold
-        self.weaponBonus = weaponBonus
-        self.armourBonus = armourBonus
-        self.headgearBonus = headgearBonus
-        self.FootgearBonus = FootgearBonus
-        print("(Initializing {})".format(self.handCards))
-        print("(Initializing {})".format(self.tableCards))
-        print("(Initializing {})".format(self.gender))
-        print("(Initializing {})".format(self.race))
-        print("(Initializing {})".format(self.playerClass))
-        print("(Initializing {})".format(self.level))
-        print("(Initializing {})".format(self.levelTotal))
-        print("(Initializing {})".format(self.gold))
-        print("(Initializing {})".format(self.weaponBonus))
-        print("(Initializing {})".format(self.armourBonus))
-        print("(Initializing {})".format(self.headgearBonus))
-        print("(Initializing {})".format(self.FootgearBonus))
 
-    def CheckHandCards():
+
+    def discard(self, card):
+        Cards.treasureCardsDiscardStack.append(card)  # add it to discard stack
+        self.tableCards.remove(card)  # unwield item
+
+    def throw_card(self, card):
+        self.tableCards.append(card)  # wield new item
+        self.handCards.remove(card)  # remove from handcards
+
+    def replace(self, discard_card, throw_card):
+        self.discard(discard_card.cardType) #discard card
+        self.throwcard(throw_card) #place card
+
+    def check_hand_cards(self, cardtype, itembonus):
         for card in self.handCards:
-            if card.cardType == "Weapon": #looking through hand cards searching for a weapon
-                if card.levelBonus > self.weaponBonus: #is it better than what you are wielding? 
-                    for weaponCard in self.tableCards: #looking on your table cards
-                        if weaponCard.cardType == "Weapon": #looking if your are wielding a weapon
-                            Cards_samlet.Cards.treasureCardsDiscardStack.append(weaponCard) #add it to discard stack
-                            self.tableCards.remove(weaponCard) #unwield weapon
-                            self.tableCards.append(card) #wield new weapon
-                            self.handCards.remove(card) #remove from handcards   
+            if card.cardType == cardtype: #looking through hand cards searching for a weapon
+                if card.levelBonus > itembonus: #is it better than what you are wielding?
+                    self.replace(, card)
+
+
+
             elif card.cardType == "Armour": 
                 if card.levelBonus > self.armourBonus: 
                     for armourCard in self.tableCards: 
