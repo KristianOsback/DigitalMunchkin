@@ -13,17 +13,18 @@ class Table:
 class Player:
     
     def __init__(self, gender, race, hand_cards = None, table_cards = None, r_weapon = None,  l_weapon = None,
-                 armour=None, headgear = None, foodgear = None, player_class = None, level = 1, level_total = 1, gold = 0):
+                 armour = None, headgear = None, footgear = None, player_class = None, level = 1, level_total = 1, gold = 0):
         """Initializes the data."""
         
         self.handCards = hand_cards or []
         self.tableCards = table_cards or Table()
         self.gender = gender
         self.race = race
-        self.weaponBonus = weapon_bonus
-        self.armourBonus = armour_bonus
-        self.headgearBonus = headgear_bonus
-        self.footgear_bonus = footgear_bonus
+        self.weapon_r = r_weapon
+        self.weapon_l = l_weapon
+        self.armour = armour
+        self.headgear = headgear
+        self.footgear = footgear
         self.playerClass = player_class
         self.level = level
         self.levelTotal = level_total
@@ -42,41 +43,11 @@ class Player:
         self.discard(discard_card.cardType) #discard card
         self.throwcard(throw_card) #place card
 
-    def check_hand_cards(self, cardtype, itembonus):
+    def check_hand_cards(self, cardtype, item):
         for card in self.handCards:
             if card.cardType == cardtype: #looking through hand cards searching for a weapon
-                if card.levelBonus > itembonus: #is it better than what you are wielding?
-                    self.replace(, card)
-
-
-
-            elif card.cardType == "Armour": 
-                if card.levelBonus > self.armourBonus: 
-                    for armourCard in self.tableCards: 
-                        if armourCard.cardType == "Armour": 
-                            Cards_samlet.Cards.treasureCardsDiscardStack.append(armourCard) 
-                            self.tableCards.remove(armourCard) 
-                            self.tableCards.append(card) 
-                            self.handCards.remove(card) 
-            elif card.cardType == "Headgear": 
-                if card.levelBonus > self.headgearBonus: 
-                    for headgearCard in self.tableCards: 
-                        if headgearCard.cardType == "Headgear": 
-                            Cards_samlet.Cards.treasureCardsDiscardStack.append(headgearCard) 
-                            self.tableCards.remove(headgearCard)
-                            self.tableCards.append(card) 
-                            self.handCards.remove(card) 
-            elif card.cardType == "Footgear": 
-                if card.levelBonus > self.footgearBonus:
-                    for footgearCard in self.tableCards: 
-                        if footgearCard.cardType == "Footgear": 
-                            Cards_samlet.Cards.treasureCardsDiscardStack.append(footgearCard)
-                            self.tableCards.remove(footgearCard) 
-                            self.tableCards.append(card) 
-                            self.handCards.remove(card)
-            else
-                print("No gear cards")
-                    
-                    
-                    
+                if card.levelBonus > item.itembonus: #is it better than what you are wielding?
+                    self.replace(item,card)
+            else:
+                print(f"No {cardtype} cards on hand")
 
