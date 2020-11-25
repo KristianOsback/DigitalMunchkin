@@ -15,7 +15,7 @@ class CardType(Enum):
     armourCard = "Armour"
     weaponCard = "Weapon"
     levelCard = "Level up"
-    monsterboostCard = "Monster boost"
+    monsterboost_card = "Monster boost"
     boostCard = "Boost"
 
 
@@ -42,20 +42,13 @@ class Cards:
         self.cardType = cardType
         self.cardDescription = cardDescription
 
-
         Cards.totalCardList.append(self)
         Cards.Amount += 1 #why does this not work? Will work, måske skal den ændres nu hvor det er class variables. 
         Cards.Left += 1 #Counting total cards in deck
-        
-        
-    def discardCard(self, card, removedFrom): #removedFrom is the list that throws the card. Can be a players hand or the table or the Stack
-        """Throw or discard a card"""
-        
-        discardStack.append(card) #card is thrown in the discard stack
-        removedFrom.pop(card) #card is removed from stack or the players hand or the table
-       
-class TreasureCards(Cards):    
-     
+
+
+class TreasureCards(Cards):
+
     def __init__(self, cardNumber, cardName, cardType, cardDescription, levelBonus, itemValue): 
         """Initializes the data."""
         
@@ -64,8 +57,7 @@ class TreasureCards(Cards):
         self.itemValue = itemValue
 
 
-
-class DoorCards(Cards):    
+class DoorCards(Cards):
      
     def __init__(self, cardNumber, cardName, cardType, cardDescription): 
         """Initializes the data."""
@@ -75,24 +67,23 @@ class DoorCards(Cards):
     
 class GearCards(TreasureCards):    
      
-    def __init__(self, cardNumber, cardName, cardType, cardDescription, levelBonus, itemValue, big): 
+    def __init__(self, card_number, cardName, cardType, cardDescription, levelBonus, itemValue, big):
         """Initializes the data."""
         
-        super(GearCards, self).__init__(cardNumber, cardName, cardType, cardDescription, levelBonus, itemValue)
+        super(GearCards, self).__init__(card_number, cardName, cardType, cardDescription, levelBonus, itemValue)
         self.big = big
 
-      
-      
+
 class MonsterCards(DoorCards):    
      
-    def __init__(self, cardNumber, cardName, cardType, cardDescription, monsterLevel, badStuff): 
+    def __init__(self, card_number, card_name, card_type, card_description, monster_level, bad_stuff, run_away):
         """Initializes the data."""
         
-        super(MonsterCards, self).__init__(cardNumber, cardName, cardType, cardDescription)
-        self.monsterLevel = monsterLevel
-        self.badStuff = badStuff
+        super(MonsterCards, self).__init__(card_number, card_name, card_type, card_description)
+        self.monsterLevel = monster_level
+        self.badStuff = bad_stuff
+        self.run_away = run_away
 
-        
         
 class CurseCards(DoorCards):    
      
@@ -102,7 +93,6 @@ class CurseCards(DoorCards):
         super(CurseCards, self).__init__(cardNumber, cardName, cardType, cardDescription)
         self.curseEffect = curseEffect
 
-        
 
 class HirelingCards(DoorCards):    
      
@@ -187,7 +177,7 @@ with open('MunchkinDoorCards.csv', "r") as csv_file:
     for row in reader:
         if len(row) > 1: #checking for empty rows 
             if row["card_type"] == "Monster":
-                Cards.doorCardsStack.append(MonsterCards(row["card_number"], row["name"], row["card_type"], row["card_description"], row["modifier"], row["bad_stuff"]))
+                Cards.doorCardsStack.append(MonsterCards(row["card_number"], row["name"], row["card_type"], row["card_description"], row["modifier"], row["bad_stuff"], row["run_away"]))
             elif row["card_type"] == "Curse":
                 Cards.doorCardsStack.append(CurseCards(row["card_number"], row["name"], row["card_type"], row["card_description"], row["bad_stuff"]))
             elif row["card_type"] == "Class":
@@ -198,8 +188,6 @@ with open('MunchkinDoorCards.csv', "r") as csv_file:
                 Cards.doorCardsStack.append(HirelingCards(row["card_number"], row["name"], row["card_type"], row["card_description"], row["modifier"]))
             elif row["card_type"] == "Modifier":
                 Cards.doorCardsStack.append(ModifierCards(row["card_number"], row["name"], row["card_type"], row["card_description"], row["modifier"]))
-                
-
 #creating treasure card stack
 #read csv, and split on "," the line
 with open('MunchkinTreasureCards.csv', "r") as csv_file:
