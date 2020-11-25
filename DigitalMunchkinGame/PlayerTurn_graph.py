@@ -2,6 +2,7 @@ import Cards_Samlet
 from Player_class import Player
 import random
 
+
 """
 A. Turn is not started
 B. In fight
