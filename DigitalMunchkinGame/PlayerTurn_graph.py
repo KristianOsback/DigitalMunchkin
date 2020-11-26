@@ -2,16 +2,62 @@ import Cards_Samlet
 from Player_class import Player
 from random import randrange, choice
 
-"""
-A. Turn is not started
-B. In fight
-C. Bnd part of turn
-D. Fight ended with victory
-E. Fight ended with defeat
-F. Fleeing
-G. Dead
-H. Turn is ended
-"""
+from enum import Enum, auto
+
+class State(Enum):
+    """
+    A. Turn is not started
+    B. In fight
+    C. 2nd part of turn
+    D. Fight ended with victory
+    E. Fight ended with defeat
+    F. Fleeing
+    G. Dead
+    H. Turn is ended
+    """
+
+    TURN_NOT_STARTED = auto()
+    IN_FIGHT = auto()
+    SECOND_PART_OF_TURN = auto()
+    FIGHT_WICTORY = auto()
+    FIGHT_DEFEAT = auto()
+    FLEEING = auto()
+    DEAD = auto()
+    TURN_ENDED = auto()
+
+class DrawDoorCard:
+
+    def do_action(self, game):
+        card = game.door_stack.pop()
+        game.active_player.add_card(card)
+
+
+class Game:
+    def __init__(self):
+
+        self.players = [Player(), Player()]
+        self.active_player = self.players[0]
+        self.present_state = State.TURN_NOT_STARTED
+        self.door_stack =
+        self.treasure_stack
+        self.door_discard
+        self.treasure_discard
+
+    def possible_actions(self):
+        if self.present_state == State.TURN_NOT_STARTED:
+            yield DrawDoorCard()
+
+    def do_action(self, action):
+        if self.present_state == State.TURN_NOT_STARTED:
+            draw_door_card #liste af mulige actions.
+class PlayerHandler:
+    def choose_one(self, game, actions):
+
+        #playerhandler der er computer, en der er menneske, en random.
+        #bryd ned i mulige actions
+
+
+
 
 playerInput = 0
 
