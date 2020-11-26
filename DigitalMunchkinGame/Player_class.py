@@ -81,5 +81,4 @@ class Player:
         self.check_hand_cards("Armour", self.armour)
         self.check_hand_cards("Headgear", self.headgear)
         self.check_hand_cards("Footgear", self.footgear)
-        self.check_hand_cards("Armour", self.armour)
         self.check_weapon_cards()

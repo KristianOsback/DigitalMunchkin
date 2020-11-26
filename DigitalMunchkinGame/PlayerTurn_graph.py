@@ -48,7 +48,7 @@ ConnectionList = {
 
 def calculate_monsterfight():
     present_state = "B"
-    for cards in .player_turn.hand_cards:
+    for cards in player_turn.hand_cards:
         print(player_turn.hand_cards.name)  # read card
         player_turn.check_all_handcards()
     if door_card_in_play.monsterLevel < player_turn.level:

@@ -1,7 +1,7 @@
 from enum import Enum #auto can auto number them.
 import csv
 
-class CardType(Enum):
+class Card_type(Enum):
     """The different cardtypes like monstercards, headgear, curses ect."""
     
     monsterCard = "Monster"
