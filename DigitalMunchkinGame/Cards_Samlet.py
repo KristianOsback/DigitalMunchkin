@@ -1,22 +1,22 @@
-from enum import Enum #auto can auto number them.
+from enum import Enum, auto
 import csv
 
 class Card_type(Enum):
     """The different cardtypes like monstercards, headgear, curses ect."""
     
-    monsterCard = "Monster"
-    curseCard = "Curse"
-    steedCard = "Steed"
-    hirelingCard = "Hireling"
-    classCard = "Class"
-    RaceCard = "Race"
-    headgearCard = "Headgear"
-    footgearCard = "Footgear"
-    armourCard = "Armour"
-    weaponCard = "Weapon"
-    levelCard = "Level up"
-    monsterboost_card = "Monster boost"
-    boostCard = "Boost"
+    monsterCard = auto()
+    curseCard = auto()
+    steedCard = auto()
+    hirelingCard = auto()
+    classCard = auto()
+    RaceCard = auto()
+    headgearCard = auto()
+    footgearCard = auto()
+    armourCard = auto()
+    weaponCard = auto()
+    levelCard = auto()
+    monsterboost_card = auto()
+    boostCard = auto()
 
 
 class Cards:
