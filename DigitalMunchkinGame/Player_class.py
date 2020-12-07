@@ -9,8 +9,8 @@ class Gender(Enum):
     F = Female
     """
 
-    MALE = auto()
-    FEMALE = auto()
+    MALE = "Male"
+    FEMALE = "Female"
 
 @dataclass
 class Table:
@@ -24,10 +24,10 @@ class Table:
 
 class Player:
 
-    def __init__(self, gender=Gender.Male, race="Human", hand_cards=None, table_cards=None, player_class=None, level=1, level_total=1, gold=0):
+    def __init__(self, gender=None, race="Human", hand_cards=None, table_cards=None, player_class=None, level=1, level_total=1, gold=0):
         """Initializes the data."""
 
-        self.gender = gender or Gender.Male
+        self.gender = gender
         self.race = race or "Human"
         self.hand_cards = hand_cards or []
         self.table_cards = table_cards or Table()
