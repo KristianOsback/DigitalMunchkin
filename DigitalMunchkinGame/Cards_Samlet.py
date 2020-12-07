@@ -26,9 +26,9 @@ class Cards:
     """
     totalCardList = []
     
-    doorCardsStack = []
+    door_cards_stack = []
     doorCardsDiscardStack = []
-    treasureCardsStack = []
+    treasure_cards_stack = []
     treasureCardsDiscardStack = []
     
     Amount = 0
@@ -175,19 +175,19 @@ with open('MunchkinDoorCards.csv', "r") as csv_file:
 
     #loop through the csv list
     for row in reader:
-        if len(row) > 1: #checking for empty rows 
+        if len(row) > 1: #checking for empty rows
             if row["card_type"] == "Monster":
-                Cards.doorCardsStack.append(MonsterCards(row["card_number"], row["name"], row["card_type"], row["card_description"], row["modifier"], row["bad_stuff"], row["run_away"]))
+                Cards.door_cards_stack.append(MonsterCards(row["card_number"], row["name"], row["card_type"], row["card_description"], row["modifier"], row["bad_stuff"], row["run_away"]))
             elif row["card_type"] == "Curse":
-                Cards.doorCardsStack.append(CurseCards(row["card_number"], row["name"], row["card_type"], row["card_description"], row["bad_stuff"]))
+                Cards.door_cards_stack.append(CurseCards(row["card_number"], row["name"], row["card_type"], row["card_description"], row["bad_stuff"]))
             elif row["card_type"] == "Class":
-                Cards.doorCardsStack.append(ClassCards(row["card_number"], row["name"], row["card_type"], row["card_description"]))
+                Cards.door_cards_stack.append(ClassCards(row["card_number"], row["name"], row["card_type"], row["card_description"]))
             elif row["card_type"] == "Race":
-                Cards.doorCardsStack.append(RaceCards(row["card_number"], row["name"], row["card_type"], row["card_description"]))
+                Cards.door_cards_stack.append(RaceCards(row["card_number"], row["name"], row["card_type"], row["card_description"]))
             elif row["card_type"] == "Hireling":
-                Cards.doorCardsStack.append(HirelingCards(row["card_number"], row["name"], row["card_type"], row["card_description"], row["modifier"]))
+                Cards.door_cards_stack.append(HirelingCards(row["card_number"], row["name"], row["card_type"], row["card_description"], row["modifier"]))
             elif row["card_type"] == "Modifier":
-                Cards.doorCardsStack.append(ModifierCards(row["card_number"], row["name"], row["card_type"], row["card_description"], row["modifier"]))
+                Cards.door_cards_stack.append(ModifierCards(row["card_number"], row["name"], row["card_type"], row["card_description"], row["modifier"]))
 #creating treasure card stack
 #read csv, and split on "," the line
 with open('MunchkinTreasureCards.csv', "r") as csv_file:
@@ -195,18 +195,18 @@ with open('MunchkinTreasureCards.csv', "r") as csv_file:
 
     #loop through the csv list
     for row in reader:
-        if len(row) > 1: #checking for empty rows 
+        if len(row) > 1: #checking for empty rows
             if row["card_type"] == "Weapon":
-                Cards.treasureCardsStack.append(WeaponCards(row["card_number"], row["name"], row["card_type"], row["card_description"], row["battle_modifier"], row["price"], row["big"]))
+                Cards.treasure_cards_stack.append(WeaponCards(row["card_number"], row["name"], row["card_type"], row["card_description"], row["battle_modifier"], row["price"], row["big"]))
             elif row["card_type"] == "Headgear":
-                Cards.treasureCardsStack.append(HeadgearCards(row["card_number"], row["name"], row["card_type"], row["card_description"], row["battle_modifier"], row["price"], row["big"]))
+                Cards.treasure_cards_stack.append(HeadgearCards(row["card_number"], row["name"], row["card_type"], row["card_description"], row["battle_modifier"], row["price"], row["big"]))
             elif row["card_type"] == "Footgear":
-                Cards.treasureCardsStack.append(FootgearCards(row["card_number"], row["name"], row["card_type"], row["card_description"], row["battle_modifier"], row["price"], row["big"]))
+                Cards.treasure_cards_stack.append(FootgearCards(row["card_number"], row["name"], row["card_type"], row["card_description"], row["battle_modifier"], row["price"], row["big"]))
             elif row["card_type"] == "Armour":
-                Cards.treasureCardsStack.append(ArmourCards(row["card_number"], row["name"], row["card_type"], row["card_description"], row["battle_modifier"], row["price"], row["big"]))
+                Cards.treasure_cards_stack.append(ArmourCards(row["card_number"], row["name"], row["card_type"], row["card_description"], row["battle_modifier"], row["price"], row["big"]))
             elif row["card_type"] == "GUAL":
-                Cards.treasureCardsStack.append(LevelCards(row["card_number"], row["name"], row["card_type"], row["card_description"], row["battle_modifier"], row["price"]))
-                
+                Cards.treasure_cards_stack.append(LevelCards(row["card_number"], row["name"], row["card_type"], row["card_description"], row["battle_modifier"], row["price"]))
+
     
                 
 #print(Cards.treasureCardsStack) 

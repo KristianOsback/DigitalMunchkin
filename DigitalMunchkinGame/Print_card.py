@@ -74,7 +74,7 @@ def PrintCard(CardItem):
         
     
     
-PrintCard(Cards_Samlet.Cards.treasureCardsStack[0])
+PrintCard(Cards_Samlet.Cards.treasure_cards_stack[0])
     
     
 #for x in Cards_Samlet.Cards:

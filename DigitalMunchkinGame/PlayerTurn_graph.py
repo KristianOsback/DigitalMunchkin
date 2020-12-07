@@ -1,6 +1,6 @@
 from Cards_Samlet import Cards
-from Player_class import Player, Table
-from random import randrange, choice
+from Player_class import Player, Table, Gender
+from random import randrange, choice, shuffle
 from enum import Enum, auto
 
 class State(Enum):
@@ -34,26 +34,51 @@ class DrawDoorCard:
 class Game:
     def __init__(self):
 
-        self.players = [Player(), Player()]
+        self.players = [Player(),  Player()]
+        self.player_number_turn = 1
         self.active_player = self.players[0]
         self.present_state = State.TURN_NOT_STARTED
-        self.partOfTurn = 0
+        self.part_of_turn = 0
         self.door_stack = []
         self.treasure_stack = []
         self.door_discard = []
         self.treasure_discard = []
         self.active_player = self.players[0]
-        self.door_card_in_play = DrawDoorCard.do_action(self)
+        self.door_card_in_play = self.pick_card(self.door_stack)
+
+    def change_player(self):
+        if len(self.players) + 1 > self.player_number_turn:
+            self.player_number_turn += 1
+            self.active_player = self.players[self.player_number_turn]
+        else:
+            self.active_player = self.players[0]
+
+    def prepare_game(self):
+        for card in Cards.door_cards_stack:
+            self.door_stack.append(card)
+
+        for card in Cards.treasure_cards_stack:
+            self.treasure_stack.append(card)
+
+    def shuffle_stack(self, stack):
+        if len(stack) > 0:
+            print("Stack is not empty!")
+        else:
+            shuffle(stack)
+            return stack
 
     def pick_card(self, stack):
+        if len(stack) == 0:
+            print("Stack is not empty!")
+            self.shuffle_stack(stack)
+        else:
+            card = stack.pop()
+            return card
+
+    def pick_card_test(self, stack):
         card = choice(stack)
         self.active_player.hand_cards.append(card)  # add it to hans
         stack.remove(card)  # remove it from stack
-        return card
-
-    def throw_and_play_door_card(self):
-        card = choice(Cards.doorCardsStack)
-        Cards.doorCardsStack.remove(card)  # remove it from stack
         return card
 
     def discard(self, card):
@@ -102,10 +127,10 @@ class Game:
 
     def do_action(self, action):
         if self.present_state == State.TURN_NOT_STARTED:
-            self.draw_door_card() #liste af mulige actions.
+            self.pick_card(self.door_stack) #liste af mulige actions.
 
     def calculate_monsterfight(self):
-        present_state = "B"
+        self.present_state = State.IN_FIGHT
         for card in self.active_player.hand_cards:
             print(card.name)  # read card
             self.check_all_handcards()
@@ -113,56 +138,54 @@ class Game:
             print("Victory!")
             self.active_player.level = self.active_player.level + 1
             self.active_player.level_total = self.active_player.level_total + 1
-            self.active_player.hand_cards.append(self.pick_card(Cards.treasureCardsStack))
-            present_state = "D"
+            self.active_player.hand_cards.append(self.pick_card(Cards.treasure_cards_stack))
+            self.present_state = State.FIGHT_WICTORY
             self.check_all_handcards()
-            present_state = "H"
+            self.present_state = State.TURN_ENDED
+            self.change_player()
         else:
-            present_state = "E"
+            self.present_state = State.FIGHT_DEFEAT
             dice = randrange(1, 7)
-            present_state = "F"
+            self.present_state = State.FLEEING
             if dice > self.door_card_in_play.run_away:
-                present_state = "H"
+                self.present_state = State.TURN_ENDED
             else:
-                present_state = "G"
+                self.present_state = State.DEAD
                 print("You are dead!")
-                self.active_player.level = 1
-                self.active_player.level_total = 1
-                self.active_player
-        player_turn = "Next_player"
+                self.players[self.player_number_turn - 1] = Player()
+                self.players.remove(self.active_player)
+            self.change_player()
 
     def player_turn_calc(self):
-        door_card_in_play = self.throw_and_play_door_card()
-        part_of_turn = 1
-        if door_card_in_play.cardType == "Monster":  # read card
-            part_of_turn = 2
+        self.part_of_turn = 1
+        if self.door_card_in_play.cardType == "Monster":  # read card
+            self.part_of_turn = 2
             self.calculate_monsterfight()
-
-        elif door_card_in_play.cardType == "curse":
-            present_state = "C"
-            print(door_card_in_play.curseEffect)  # read card
-
+        elif self.door_card_in_play.cardType == "curse":
+            self.present_state = State.SECOND_PART_OF_TURN
+            print(self.door_card_in_play.curseEffect)  # read card
         else:
-            present_state = "C"
-            self.active_player.hand_cards.append(door_card_in_play)
+            self.present_state = State.SECOND_PART_OF_TURN
+            self.active_player.hand_cards.append(self.door_card_in_play)
             self.check_all_handcards()
             for card in self.active_player.hand_cards:
                 if any(card.cardtype == "Monster"):
-                    self.door_card_in_play = self.throw_and_play_door_card()
+                    self.door_card_in_play = self.pick_card(self.door_stack)
                     self.calculate_monsterfight()
             else:
                 print("You search the room")
-                self.pick_card(Cards.doorCardsStack)
+                self.pick_card(Cards.door_cards_stack)
                 self.check_all_handcards()
-                present_state = "H"
+                self.present_state = State.TURN_ENDED
  
 class PlayerHandler:
    def choose_one(self, game, actions):
+       None
 
 
 
-        #playerhandler der er computer, en der er menneske, en random.
-        #bryd ned i mulige actions
+#playerhandler der er computer, en der er menneske, en random.
+#bryd ned i mulige actions
 
 
 # partOfTurn can be:
@@ -188,8 +211,6 @@ ConnectionList = {
     "G": ["H"],
     "H": []
 }
-
-
 
 
 
