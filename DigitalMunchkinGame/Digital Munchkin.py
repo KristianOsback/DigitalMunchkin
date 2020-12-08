@@ -2,6 +2,7 @@ import PlayerTurn_graph
 from Player_class import Gender
 from enum import Enum, auto
 
+
 class PlayerType(Enum):
     """
     C = Computer
@@ -11,7 +12,8 @@ class PlayerType(Enum):
     COMPUTER = "ComputerKr"
     HUMAN = "Human"
 
-class Welcome_and_starting:
+
+class WelcomeAndStarting:
 
     def start_game(self):
         print("Welcome to Digital Munchkin!")
@@ -46,9 +48,7 @@ class Welcome_and_starting:
         return player_info
 
 
+welcome = WelcomeAndStarting
+welcome.start_game(WelcomeAndStarting)
 
 
-
-test = Welcome_and_starting
-
-print(test.start_game(test))
