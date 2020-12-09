@@ -1,3 +1,4 @@
+from Cards_Samlet import Cards
 from PlayerTurn_graph import Game
 from Player_class import Player, Table, Gender
 from enum import Enum, auto
@@ -14,6 +15,12 @@ class PlayerType(Enum):
 
 
 class WelcomeAndStarting:
+
+    def __init__(self):
+        """Initializes the data."""
+
+        self.door_stack = None
+        self.treasure_stack = None
 
     def start_game(self):
         print("Welcome to Digital Munchkin!")
@@ -47,17 +54,31 @@ class WelcomeAndStarting:
         player_info = [player_name, player_type, player_gender]
         return player_info
 
+    def prepare_game(self,):
+        for card in Cards.door_cards_stack:
+            door_stack = [card]
+
+        for card in Cards.treasure_cards_stack:
+            treasure_stack = [card]
+        return door_stack, treasure_stack
+
     def actual_game(self):
+        self.prepare_game()
         player_info = self.start_game(WelcomeAndStarting)
         p1 = Player(player_info[0], player_info[1], player_info[2])
         p2 = Player(player_info[3], player_info[4], player_info[5])
         the_game = Game(p1, p2)
-        the_game.prepare_game()
         the_game.player_turn_calc()
 
+    def actual_game_TEST(self):
+        stacks = self.prepare_game(self)
+        card_in_play = Game.pick_card(Game, stacks[1])
+        p1 = Player("Tester1", PlayerType.COMPUTER, Gender.MALE)
+        p2 = Player("Tester2", PlayerType.COMPUTER, Gender.FEMALE)
+        the_game = Game(p1, p2, stacks[0], stacks[1], card_in_play)
+        the_game.player_turn_calc()
 
-
-
+WelcomeAndStarting.actual_game_TEST(WelcomeAndStarting)
 
 
 

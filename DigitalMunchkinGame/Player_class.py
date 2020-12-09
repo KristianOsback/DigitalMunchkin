@@ -33,7 +33,7 @@ class Player:
         self.race = race or "Human"
         self.hand_cards = hand_cards
         self.table_cards = table_cards or Table()
-        self.playerClass = player_class
+        self.player_class = player_class
         self.level = level
         self.levelTotal = level_total
         self.gold = gold
@@ -45,7 +45,7 @@ class Player:
         print(self.race)
         print(self.hand_cards)
         print(self.table_cards)
-        print(self.playerClass)
+        print(self.player_class)
         print(self.level)
         print(self.levelTotal)
         print(self.gold)

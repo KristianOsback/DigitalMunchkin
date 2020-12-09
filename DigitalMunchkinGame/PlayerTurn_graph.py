@@ -1,5 +1,5 @@
 from Cards_Samlet import Cards
-from Player_class import Player, Table, Gender
+from Player_class import Player, Table
 from random import randrange, choice, shuffle
 from enum import Enum, auto
 
@@ -32,27 +32,19 @@ class DrawDoorCard:
         return card
 
 class Game:
-    def __init__(self, p1=None, p2=None):
+    def __init__(self, p1=None, p2=None, door_stack=None, treasure_stack=None, door_card_in_play=None):
 
         self.players = [p1,  p2]
+        self.door_stack = door_stack
+        self.treasure_stack = treasure_stack
+        self.door_card_in_play = door_card_in_play
+        self.active_player = p1
         self.player_number_turn = 1
-        self.active_player = self.players[0]
         self.present_state = State.TURN_NOT_STARTED
         self.part_of_turn = 0
-        self.door_stack = []
-        self.treasure_stack = []
         self.door_discard = []
         self.treasure_discard = []
-        self.active_player = self.players[0]
-        self.door_card_in_play = self.pick_card(self.door_stack)
         self.game_won = False
-
-    def prepare_game(self):
-        for card in Cards.door_cards_stack:
-            self.door_stack.append(card)
-
-        for card in Cards.treasure_cards_stack:
-            self.treasure_stack.append(card)
 
     def shuffle_stack(self, stack):
         if len(stack) > 0:
@@ -64,15 +56,11 @@ class Game:
     def pick_card(self, stack):
         if len(stack) == 0:
             self.shuffle_stack(stack)
+            card = stack.pop()
+            return card
         else:
             card = stack.pop()
             return card
-
-    def pick_card_test(self, stack):
-        card = choice(stack)
-        self.active_player.hand_cards.append(card)  # add it to hans
-        stack.remove(card)  # remove it from stack
-        return card
 
     def discard(self, card):
         Cards.treasureCardsDiscardStack.append(card)  # add it to discard stack
@@ -147,7 +135,7 @@ class Game:
             print("Victory!")
             self.active_player.level = self.active_player.level + 1
             self.active_player.level_total = self.active_player.level_total + 1
-            self.active_player.hand_cards.append(self.pick_card(Cards.treasure_cards_stack))
+            self.active_player.hand_cards.append(self.pick_card(self.treasure_stack))
             self.present_state = State.FIGHT_WICTORY
             self.check_all_handcards()
             self.present_state = State.TURN_ENDED
@@ -186,7 +174,7 @@ class Game:
                     self.calculate_monsterfight()
             else:
                 print("You search the room")
-                self.pick_card(Cards.door_cards_stack)
+                self.pick_card(self.door_stack)
                 self.check_all_handcards()
                 self.present_state = State.TURN_ENDED
                 self.check_for_win()
