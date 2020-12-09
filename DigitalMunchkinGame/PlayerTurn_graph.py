@@ -32,9 +32,9 @@ class DrawDoorCard:
         return card
 
 class Game:
-    def __init__(self):
+    def __init__(self, p1=None, p2=None):
 
-        self.players = [Player(),  Player()]
+        self.players = [p1,  p2]
         self.player_number_turn = 1
         self.active_player = self.players[0]
         self.present_state = State.TURN_NOT_STARTED
@@ -45,13 +45,7 @@ class Game:
         self.treasure_discard = []
         self.active_player = self.players[0]
         self.door_card_in_play = self.pick_card(self.door_stack)
-
-    def change_player(self):
-        if len(self.players) + 1 > self.player_number_turn:
-            self.player_number_turn += 1
-            self.active_player = self.players[self.player_number_turn]
-        else:
-            self.active_player = self.players[0]
+        self.game_won = False
 
     def prepare_game(self):
         for card in Cards.door_cards_stack:
@@ -69,7 +63,6 @@ class Game:
 
     def pick_card(self, stack):
         if len(stack) == 0:
-            print("Stack is not empty!")
             self.shuffle_stack(stack)
         else:
             card = stack.pop()
@@ -92,6 +85,22 @@ class Game:
     def replace(self, discard_card, throw_card):
         self.discard(discard_card.cardType)  # discard card
         self.throw_card(throw_card)  # place card
+
+    def change_player(self):
+        if len(self.players) + 1 > self.player_number_turn:
+            self.player_number_turn += 1
+            self.active_player = self.players[self.player_number_turn]
+        else:
+            self.active_player = self.players[0]
+
+    def check_for_win(self):
+        for player in self.players:
+            if player.level >= 10:
+                print(f"Congratulation! {player.name} won the game!")
+                self.game_won = True
+                input("Play again?")
+            else:
+                pass
 
     def check_hand_cards(self, cardtype, item):
         # cardtype should be a string with 1 uppercase word, like: Armour
@@ -142,13 +151,16 @@ class Game:
             self.present_state = State.FIGHT_WICTORY
             self.check_all_handcards()
             self.present_state = State.TURN_ENDED
-            self.change_player()
+            self.check_for_win()
+            self.player_turn_calc()
         else:
             self.present_state = State.FIGHT_DEFEAT
             dice = randrange(1, 7)
             self.present_state = State.FLEEING
             if dice > self.door_card_in_play.run_away:
                 self.present_state = State.TURN_ENDED
+                self.check_for_win()
+                self.player_turn_calc()
             else:
                 self.present_state = State.DEAD
                 print("You are dead!")
@@ -177,11 +189,9 @@ class Game:
                 self.pick_card(Cards.door_cards_stack)
                 self.check_all_handcards()
                 self.present_state = State.TURN_ENDED
- 
-class PlayerHandler:
-   def choose_one(self, game, actions):
-       None
-
+                self.check_for_win()
+                self.change_player()
+                self.player_turn_calc()
 
 
 #playerhandler der er computer, en der er menneske, en random.
