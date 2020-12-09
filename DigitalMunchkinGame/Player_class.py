@@ -31,7 +31,7 @@ class Player:
         self.type = type
         self.gender = gender
         self.race = race or "Human"
-        self.hand_cards = hand_cards
+        self.hand_cards = hand_cards or []
         self.table_cards = table_cards or Table()
         self.player_class = player_class
         self.level = level
