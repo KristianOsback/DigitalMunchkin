@@ -46,19 +46,34 @@ class Game:
             shuffle(stack)
             return stack
 
-    def pick_card(self, stack, discard_stack):
-        if not stack:
-            self.shuffle_stack(discard_stack)
-            stack.append(discard_stack)
-            discard_stack = []
-            card = stack.pop()
+    def pick_door_card(self):
+        if not self.door_stack:
+            self.shuffle_stack(self.door_discard)
+            self.door_stack.append(self.door_discard)
+            self.door_discard = []
+            card = self.door_stack.pop()
             return card
         else:
-            discard_stack.append(stack.pop(0))
-            if not stack:
-                self.shuffle_stack(discard_stack)
-                stack.append(discard_stack.pop())
-            card = stack.pop()
+            self.door_discard.append(self.door_stack.pop(0))
+            if not self.door_stack:
+                self.shuffle_stack(self.door_discard)
+                self.door_stack.append(self.door_discard.pop())
+            card = self.door_stack.pop()
+            return card
+
+    def pick_treasure_card(self):
+        if not self.treasure_stack:
+            self.shuffle_stack(self.treasure_discard)
+            self.treasure_stack.append(self.treasure_discard)
+            self.treasure_discard = []
+            card = self.door_stack.pop()
+            return card
+        else:
+            self.door_discard.append(self.door_stack.pop(0))
+            if not self.door_stack:
+                self.shuffle_stack(self.treasure_discard)
+                self.treasure_stack.append(self.treasure_discard.pop())
+            card = self.treasure_stack.pop()
             return card
 
     def discard(self, card):
@@ -132,20 +147,16 @@ class Game:
         self.check_hand_cards("Footgear", self.active_player.table_cards.foot)
         self.check_weapon_cards()
 
-    def do_action(self, action):
-        if self.present_state == State.TURN_NOT_STARTED:
-            self.pick_card(self.door_stack) #liste af mulige actions.
-
-    def calculate_monsterfight(self):
+    def calculate_monsterfight(self, monstercard):
         self.present_state = State.IN_FIGHT
         for card in self.active_player.hand_cards:
             print(card.name)  # read card
             self.check_all_handcards()
-        if self.door_card_in_play.monsterLevel < self.active_player.level:
+        if monstercard.monsterLevel < self.active_player.level:
             print("Victory!")
             self.active_player.level = self.active_player.level + 1
             self.active_player.level_total = self.active_player.level_total + 1
-            self.active_player.hand_cards.append(self.pick_card(self.treasure_stack))
+            self.active_player.hand_cards.append(self.pick_treasure_card())
             self.present_state = State.FIGHT_WICTORY
             self.check_all_handcards()
             self.present_state = State.TURN_ENDED
@@ -153,7 +164,7 @@ class Game:
             self.present_state = State.FIGHT_DEFEAT
             dice = randrange(1, 7)
             self.present_state = State.FLEEING
-            if dice > self.door_card_in_play.run_away:
+            if dice > monstercard.run_away:
                 self.present_state = State.TURN_ENDED
             else:
                 self.present_state = State.DEAD
@@ -163,24 +174,24 @@ class Game:
             self.change_player()
 
     def player_turn_calc(self):
+        door_card_in_play = self.pick_door_card()
         self.part_of_turn = 1
-        if self.door_card_in_play.cardType == "Monster":  # read card
+        if door_card_in_play.cardType == "Monster":  # read card
             self.part_of_turn = 2
             self.calculate_monsterfight()
-        elif self.door_card_in_play.cardType == "curse":
+        elif door_card_in_play.cardType == "curse":
             self.present_state = State.SECOND_PART_OF_TURN
-            print(self.door_card_in_play.curseEffect)  # read card
+            print(door_card_in_play.curseEffect)  # read card
         else:
             self.present_state = State.SECOND_PART_OF_TURN
-            self.active_player.hand_cards.append(self.door_card_in_play)
+            self.active_player.hand_cards.append(door_card_in_play)
             self.check_all_handcards()
             for card in self.active_player.hand_cards:
                 if card.cardType == "Monster":
-                    self.door_card_in_play = self.pick_card(self.door_stack)
-                    self.calculate_monsterfight()
+                    self.calculate_monsterfight(card)
             else:
                 print("You search the room")
-                self.pick_card(self.door_stack, self.door_discard)
+                self.pick_door_card()
                 self.check_all_handcards()
                 self.present_state = State.TURN_ENDED
                 self.change_player()

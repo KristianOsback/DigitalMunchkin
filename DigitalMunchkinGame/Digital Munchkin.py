@@ -64,6 +64,16 @@ class WelcomeAndStarting:
         return player_info
 
     def actual_game(self):
+        decks = Prepare_decks()
+        prepare = decks.prepare_game()
+        p1 = Player("Tester1", PlayerType.COMPUTER, Gender.MALE)
+        p2 = Player("Tester2", PlayerType.COMPUTER, Gender.FEMALE)
+        the_game = Game(p1, p2, prepare[0], prepare[1])
+        the_game.pick_door_card()
+        the_game.player_turn_calc()
+
+"""
+    def actual_game(self):
         stacks = self.prepare_game(self)
         card_in_play = Game.pick_card(Game, stacks[1])
         player_info = self.start_game(WelcomeAndStarting)
@@ -71,20 +81,10 @@ class WelcomeAndStarting:
         p2 = Player(player_info[3], player_info[4], player_info[5])
         the_game = Game(p1, p2, stacks[0], stacks[1], card_in_play)
         the_game.player_turn_calc()
-
-    def actual_game_TEST(self):
-        decks = Prepare_decks()
-        prepare = decks.prepare_game()
-        game = Game()
-        card_in_play = game.pick_card(prepare[0], game.door_discard)
-        p1 = Player("Tester1", PlayerType.COMPUTER, Gender.MALE)
-        p2 = Player("Tester2", PlayerType.COMPUTER, Gender.FEMALE)
-        the_game = Game(p1, p2, prepare[0], prepare[1], card_in_play)
-        the_game.player_turn_calc()
-
+"""
 
 
 WelcomeAndStarting().start_game()
-game = WelcomeAndStarting.actual_game_TEST(WelcomeAndStarting)
+WelcomeAndStarting.actual_game(WelcomeAndStarting)
 
 
