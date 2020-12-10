@@ -1,4 +1,4 @@
-from Cards_Samlet import Cards
+from Cards_Samlet import *
 from PlayerTurn_graph import Game
 from Player_class import Player, Table, Gender
 from enum import Enum, auto
@@ -13,21 +13,9 @@ class PlayerType(Enum):
     COMPUTER = "Computer"
     HUMAN = "Human"
 
-class Prepare_decks:
 
-    def __init__(self):
-        """Initializes the data."""
-
-        self.door_stack = []
-        self.treasure_stack = []
-
-    def prepare_game(self,):
-        for card in Cards.door_cards_stack:
-            self.door_stack.append(card)
-
-        for card in Cards.treasure_cards_stack:
-            self.treasure_stack.append(card)
-        return self.door_stack, self.treasure_stack
+def prepare_game():
+    return list(read_door_cards()), list(read_treasure_cards())
 
 class WelcomeAndStarting:
 
@@ -64,11 +52,10 @@ class WelcomeAndStarting:
         return player_info
 
     def actual_game(self):
-        decks = Prepare_decks()
-        prepare = decks.prepare_game()
+        prepare = prepare_game()
         p1 = Player("Tester1", PlayerType.COMPUTER, Gender.MALE)
         p2 = Player("Tester2", PlayerType.COMPUTER, Gender.FEMALE)
-        the_game = Game(p1, p2, prepare[0], prepare[1])
+        the_game = Game([p1, p2], prepare[0], prepare[1])
         the_game.pick_door_card()
         the_game.player_turn_calc()
 
@@ -84,7 +71,9 @@ class WelcomeAndStarting:
 """
 
 
-WelcomeAndStarting().start_game()
-WelcomeAndStarting.actual_game(WelcomeAndStarting)
+if __name__ == '__main__':
+    game = WelcomeAndStarting()
+    # game.start_game()
+    game.actual_game()
 
 
