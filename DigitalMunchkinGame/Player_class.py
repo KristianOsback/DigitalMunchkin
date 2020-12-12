@@ -18,7 +18,7 @@ class Gender(Enum):
 class Table:
     armour: ArmourCards = None
     head: HeadgearCards = None
-    foot: FootgearCards = None
+    foot: FootGearCards = None
     weapon_l: WeaponCards = None
     weapon_r: WeaponCards = None
     hireling: HirelingCards = None
@@ -104,3 +104,6 @@ class Player:
             self.check_hand_cards("Headgear", self.active_player.table_cards.head)
             self.check_hand_cards("Footgear", self.active_player.table_cards.foot)
             self.check_weapon_cards()
+
+    def die(self):
+        raise NotImplemented()

@@ -113,8 +113,8 @@ class Game:
             else:
                 self.present_state = State.DEAD
                 print("You are dead!")
-                self.players[self.player_number_turn - 1] = Player()
-                self.players.remove(self.active_player)
+                discards = self.active_player.die()
+                self.discard_cards(discards)
             self.change_player()
 
     def player_turn_calc(self):
@@ -139,6 +139,9 @@ class Game:
                 self.check_activeplayer_cards()
                 self.present_state = State.TURN_ENDED
                 self.change_player()
+
+    def discard_cards(self, discards):
+        raise NotImplemented()
 
 
 #playerhandler der er computer, en der er menneske, en random.
