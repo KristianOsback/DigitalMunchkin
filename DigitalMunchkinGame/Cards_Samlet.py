@@ -40,7 +40,7 @@ class TreasureCards(Cards):
         """Initializes the data."""
         
         super(TreasureCards, self).__init__(card_number, card_name, card_description)
-        self.levelBonus = level_bonus
+        self.level_bonus = level_bonus
         self.itemValue = item_value
 
 
@@ -154,17 +154,20 @@ class LevelCards(TreasureCards):
         
         super(LevelCards, self).__init__(card_number, card_name, card_description, level_bonus, item_value)
 
-    #creating door card stack
-    #read csv, and split on "," the line
+
+class CreateCards:
+    # creating door card stack
+    # read csv, and split on "," the line
     def read_door_cards(self, file='MunchkinDoorCards.csv'):
 
         cards = []
         with open(file, "r") as csv_file:
             reader = csv.DictReader(csv_file)
 
-            ##loop through the csv list
+            # loop through the csv list
             for row in reader:
-                if len(row) > 1: #checking for empty rows
+                # checking for empty rows
+                if len(row) > 1:
                     if row["card_type"] == "Monster":
                         card = MonsterCards(
                             row["card_number"],
@@ -208,8 +211,8 @@ class LevelCards(TreasureCards):
                         cards.append(card)
         return cards
 
-    #creating treasure card stack
-    #read csv, and split on "," the line
+    # creating treasure card stack
+    # read csv, and split on "," the line
 
     def read_treasure_cards(self, file='MunchkinTreasureCards.csv'):
         cards = []
@@ -266,8 +269,8 @@ class LevelCards(TreasureCards):
         return cards
 
                 
-#print(Cards.treasureCardsStack) 
-#print(Cards.doorCardsStack) 
+# print(Cards.treasureCardsStack)
+# print(Cards.doorCardsStack)
 
 
 """ Questions

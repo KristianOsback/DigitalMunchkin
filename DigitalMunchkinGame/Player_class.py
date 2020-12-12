@@ -1,8 +1,8 @@
 from typing import List
-
+from PlayerTurn_graph import Game
 from Cards_Samlet import *
 from dataclasses import dataclass
-from enum import Enum, auto
+from enum import Enum
 
 
 class Gender(Enum):
@@ -14,6 +14,7 @@ class Gender(Enum):
     MALE = "Male"
     FEMALE = "Female"
 
+
 @dataclass
 class Table:
     armour: ArmourCards = None
@@ -23,16 +24,26 @@ class Table:
     weapon_r: WeaponCards = None
     hireling: HirelingCards = None
 
-    def remove(self, card):
-        raise NotImplemented("WATT!")
+    def remove(self, card: Cards, from_collection: list, discard_stack):
 
-    def add(self, card):
-        raise NotImplemented("SHASDA!")
+
+    def (self, card: Cards):
+        self.
 
 
 class Player:
 
-    def __init__(self, name=None, type=None, gender=None, race="Human", hand_cards=None, table_cards=None, player_class=None, level=1, level_total=1, gold=0):
+    def __init__(self,
+                 name=None,
+                 type=None,
+                 gender=None,
+                 race="Human",
+                 hand_cards=None,
+                 table_cards=None,
+                 player_class=None,
+                 level=1,
+                 level_total=1,
+                 gold=0):
         """Initializes the data."""
 
         self.name = name
@@ -66,44 +77,44 @@ class Player:
         self.table_cards.remove(old)
         self.throw_card(new)
 
+    @property
     def throw_better_cards(self) -> List[Cards]:
-        return []
-        def check_hand_cards(self, cardtype, item):
-            # cardtype should be a string with 1 uppercase word, like: Armour
-            for card in self.active_player.hand_cards:
-                if not isinstance(card, TreasureCards): continue
-                if card.cardType == cardtype:  # looking through hand cards searching for a weapon
-                    if item is None:
-                        item = card
-                    else:
-                        if card.levelBonus > item.levelBonus:  # is it better than what you are wielding?
-                            self.replace(item, card)
+        discards = [self.check_hand_cards(ArmourCards, self.table_cards.armour),
+                    self.check_hand_cards(HeadgearCards, self.table_cards.head),
+                    self.check_hand_cards(FootGearCards, self.table_cards.foot), self.check_weapon_cards()]
+        return discards
+
+    def check_hand_cards(self, card_type, item):
+        for card in self.hand_cards:
+            if not isinstance(card, TreasureCards):
+                continue
+            if card is card_type:  # looking through hand cards searching for a weapon
+                if item is None:
+                    item = card
                 else:
-                    print(f"No {cardtype} cards on hand")
+                    if card.level_bonus > item.level_bonus:  # is it better than what you are wielding?
+                        self.replace_card(item, card)
+                        return item
+            else:
+                print(f"No {card_type} cards on hand")
 
-        def check_weapon_cards(self):  # cardtype should be a string with 1 upercase word, like: Armour
-            worst_weapon = None
-            for card in self.active_player.hand_cards:
-                if isinstance(card, WeaponCards):  # looking through hand cards searching for a weapon
-                    if self.active_player.table_cards.weapon_l is None:
-                        self.active_player.table_cards.weapon_l = card
-                    else:
-                        if self.active_player.table_cards.weapon_l.levelBonus > self.active_player.table_cards.weapon_r.levelBonus:
-                            worst_weapon = self.active_player.table_cards.weapon_r
-                        else:
-                            worst_weapon = self.active_player.table_cards.weapon_l
-
-                        for card in self.active_player.hand_cards:
-                            if card.levelBonus > worst_weapon.levelBonus:  # is it better than what you are wielding?
-                                self.replace(worst_weapon, card)
+    def check_weapon_cards(self):
+        for card in self.hand_cards:
+            if isinstance(card, WeaponCards):  # looking through hand cards searching for a weapon
+                if self.table_cards.weapon_l is None and self.table_cards.weapon_r is None:
+                    self.table_cards.weapon_r = card
                 else:
-                    print(f"No weapon cards on hand")
-
-        def check_all_handcards(self):
-            self.check_hand_cards("Armour", self.active_player.table_cards.armour)
-            self.check_hand_cards("Headgear", self.active_player.table_cards.head)
-            self.check_hand_cards("Footgear", self.active_player.table_cards.foot)
-            self.check_weapon_cards()
+                    if self.table_cards.weapon_l.level_bonus > self.table_cards.weapon_r.level_bonus:
+                        worst_weapon = self.table_cards.weapon_r
+                    else:
+                        worst_weapon = self.table_cards.weapon_l
+                    for card in self.hand_cards:
+                        if isinstance(card, WeaponCards):
+                            if card.level_bonus > worst_weapon.level_bonus:  # is it better than what you are wielding?
+                                self.replace_card(worst_weapon, card)
+                                return worst_weapon
+            else:
+                print(f"No weapon cards on hand")
 
     def die(self):
         raise NotImplemented()

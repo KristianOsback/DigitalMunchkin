@@ -5,6 +5,7 @@ from Player_class import Player
 from random import randrange, shuffle
 from enum import Enum, auto
 
+
 class State(Enum):
     """
     A. Turn is not started
@@ -26,6 +27,7 @@ class State(Enum):
     DEAD = auto()
     TURN_ENDED = auto()
 
+
 class Game:
     def __init__(self, players, door_stack: List[Cards], treasure_stack: List[Cards]):
 
@@ -40,7 +42,6 @@ class Game:
         self.present_state = State.TURN_NOT_STARTED
         self.part_of_turn = 0
         self.game_won = False
-
 
     def pick_door_card(self) -> Cards:
         if not self.door_stack:
@@ -81,28 +82,27 @@ class Game:
             print("Next player turn!")
             self.player_turn_calc()
 
-
     def check_for_win(self):
         for player in self.players:
             if player.level >= 10:
                 return player
 
-    def check_activeplayer_cards(self):
-        discards = self.active_player.throw_better_cards()
+    def check_active_player_cards(self):
+        discards = self.active_player.throw_better_cards
         self.treasure_discard.extend(discards)
 
     def calculate_monsterfight(self, monstercard: MonsterCards):
         self.present_state = State.IN_FIGHT
         for card in self.active_player.hand_cards:
             print(card.cardName)  # read card
-            self.check_activeplayer_cards()
+            self.check_active_player_cards()
         if monstercard.monsterLevel < self.active_player.level:
             print("Victory!")
             self.active_player.level = self.active_player.level + 1
             self.active_player.level_total = self.active_player.level_total + 1
             self.active_player.hand_cards.append(self.pick_treasure_card())
             self.present_state = State.FIGHT_WICTORY
-            self.check_activeplayer_cards()
+            self.check_active_player_cards()
             self.present_state = State.TURN_ENDED
         else:
             self.present_state = State.FIGHT_DEFEAT
@@ -129,14 +129,14 @@ class Game:
         else:
             self.present_state = State.SECOND_PART_OF_TURN
             self.active_player.hand_cards.append(door_card_in_play)
-            self.check_activeplayer_cards()
+            self.check_active_player_cards()
             for card in self.active_player.hand_cards:
                 if isinstance(card, MonsterCards):
                     self.calculate_monsterfight(card)
             else:
                 print("You search the room")
                 self.pick_door_card()
-                self.check_activeplayer_cards()
+                self.check_active_player_cards()
                 self.present_state = State.TURN_ENDED
                 self.change_player()
 
@@ -144,8 +144,8 @@ class Game:
         raise NotImplemented()
 
 
-#playerhandler der er computer, en der er menneske, en random.
-#bryd ned i mulige actions
+# playerhandler der er computer, en der er menneske, en random.
+# bryd ned i mulige actions
 
 
 # partOfTurn can be:
@@ -153,7 +153,7 @@ class Game:
 # 1 if you have drawn a door card,
 # 2 if you have both drawn a door card and fought/searched room.
 
-#Nodes and their edges
+# Nodes and their edges
 Nodes = ["A", "B", "C", "D", "E", "F", "G", "H"]
 Edges = [("A", "B"), ("A", "C"), ("C", "C"), ("C", "B"),
          ("C", "H"), ("B", "B"), ("B", "D"), ("B", "E"),
@@ -172,8 +172,6 @@ ConnectionList = {
     "H": []
 }
 
-
-
 """
 doorCardStartTurn = random.choice(Cards_Samlet.Cards.doorCardsStack)
 partOfTurn = 1
@@ -190,6 +188,7 @@ else:
 
 # print(ConnectionList)
 # print(Players)
+
 
 def shuffle_deck(cards: List[Cards]) -> List[Cards]:
     return shuffle(cards) if cards else []

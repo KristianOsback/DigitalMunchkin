@@ -1,7 +1,7 @@
 from Cards_Samlet import *
 from PlayerTurn_graph import Game
-from Player_class import Player, Table, Gender
-from enum import Enum, auto
+from Player_class import Player, Gender
+from enum import Enum
 
 
 class PlayerType(Enum):
@@ -15,7 +15,8 @@ class PlayerType(Enum):
 
 
 def prepare_game():
-    return list(read_door_cards()), list(read_treasure_cards())
+    return list([CreateCards().read_door_cards(), CreateCards().read_treasure_cards()])
+
 
 class WelcomeAndStarting:
 
