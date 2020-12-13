@@ -1,5 +1,4 @@
 from typing import List
-from PlayerTurn_graph import Game
 from Cards_Samlet import *
 from dataclasses import dataclass
 from enum import Enum
@@ -24,13 +23,26 @@ class Table:
     weapon_r: WeaponCards = None
     hireling: HirelingCards = None
 
-    def remove(self, card: Cards, from_collection: list, discard_stack):
+    def remove(self, card: Cards):
+        Player().table_cards.remove(card)
 
+    def add_armour(self, card: Cards):
+        Player().table_cards.armour = card
 
-    def (self, card: Cards):
-        self.
+    def add_head(self, card: Cards):
+        Player().table_cards.head = card
 
+    def add_foot(self, card: Cards):
+        Player().table_cards.foot = card
 
+    def add_weapon_r(self, card: Cards):
+        Player().table_cards.weapon_r = card
+
+    def add_weapon_l(self, card: Cards):
+        Player().table_cards.weapon_l = card
+
+    def add_hireling(self, card: Cards):
+        Player().table_cards.hireling = card
 class Player:
 
     def __init__(self,
@@ -69,13 +81,33 @@ class Player:
         print(self.levelTotal)
         print(self.gold)
 
-    def throw_card(self, card: Cards):
-        self.table_cards.add(card)  # wield new item
-        self.hand_cards.remove(card)  # remove from handcards
-
     def replace_card(self, old: Cards, new: Cards):
         self.table_cards.remove(old)
-        self.throw_card(new)
+        if new is isinstance(new, ArmourCards):
+            self.table_cards.add_armour(new)
+        elif new is isinstance(new, HeadgearCards):
+            self.table_cards.add_head(new)
+        elif new is isinstance(new, FootGearCards):
+            self.table_cards.add_foot(new)
+        elif new is isinstance(new, HirelingCards):
+            self.table_cards.add_hireling(new)
+
+    def replace_weapon(self, old: Cards, new: Cards):
+        self.table_cards.remove(old)
+        for card
+        if isinstance(card, WeaponCards):  # looking through hand cards searching for a weapon
+            if self.table_cards.weapon_l.level_bonus > self.table_cards.weapon_r.level_bonus:
+                worst_weapon = self.table_cards.weapon_r
+            else:
+                worst_weapon = self.table_cards.weapon_l
+            for card in self.hand_cards:
+                if card.level_bonus > worst_weapon.level_bonus:  # is it better than what you are wielding?
+                    self.replace_card(worst_weapon, card)
+                    return worst_weapon
+            if hand == "right":
+                self.table_cards.add_weapon_r(new)
+            elif hand == "left":
+                self.table_cards.add_weapon_l(new)
 
     @property
     def throw_better_cards(self) -> List[Cards]:
@@ -100,19 +132,10 @@ class Player:
 
     def check_weapon_cards(self):
         for card in self.hand_cards:
-            if isinstance(card, WeaponCards):  # looking through hand cards searching for a weapon
                 if self.table_cards.weapon_l is None and self.table_cards.weapon_r is None:
                     self.table_cards.weapon_r = card
                 else:
-                    if self.table_cards.weapon_l.level_bonus > self.table_cards.weapon_r.level_bonus:
-                        worst_weapon = self.table_cards.weapon_r
-                    else:
-                        worst_weapon = self.table_cards.weapon_l
-                    for card in self.hand_cards:
-                        if isinstance(card, WeaponCards):
-                            if card.level_bonus > worst_weapon.level_bonus:  # is it better than what you are wielding?
-                                self.replace_card(worst_weapon, card)
-                                return worst_weapon
+
             else:
                 print(f"No weapon cards on hand")
 
