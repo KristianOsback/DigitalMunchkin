@@ -4,6 +4,7 @@ from dataclasses import dataclass
 from enum import Enum
 
 
+
 class Gender(Enum):
     """
     M = Male
@@ -13,6 +14,15 @@ class Gender(Enum):
     MALE = "Male"
     FEMALE = "Female"
 
+
+class PlayerType(Enum):
+    """
+    C = Computer
+    H = Human
+    """
+
+    COMPUTER = "Computer"
+    HUMAN = "Human"
 
 @dataclass
 class Table:
@@ -71,18 +81,6 @@ class Player:
         self.levelTotal = level_total
         self.gold = gold
 
-    def test_information(self):
-        print(self.name)
-        print(self.type)
-        print(self.gender)
-        print(self.race)
-        print(self.hand_cards)
-        print(self.table_cards)
-        print(self.player_class)
-        print(self.level)
-        print(self.levelTotal)
-        print(self.gold)
-
     def replace_card(self, old: Cards, new: Cards):
         self.table_cards.remove(old)
         if new is isinstance(new, ArmourCards):
@@ -94,32 +92,25 @@ class Player:
         elif new is isinstance(new, HirelingCards):
             self.table_cards.add_hireling(new)
 
-    def check_and_replace_weapon(self, old: Cards, new: Cards):
+    def replace_weapon(self, old: Cards, new: Cards):
         self.table_cards.remove(old)
-        worst_weapon = None
         for card in self.hand_cards:
-            if card is isinstance(card, WeaponCards):
-                if self.table_cards.weapon_l is None and self.table_cards.weapon_r is None:
-                    self.table_cards.weapon_r = card
-                elif self.table_cards.weapon_l is None and self.table_cards.weapon_r is isinstance(self.table_cards.weapon_r, WeaponCards):
-                    self.table_cards.weapon_l = card
-                    if self.table_cards.weapon_l.level_bonus > self.table_cards.weapon_r.level_bonus:
-                        worst_weapon = self.table_cards.weapon_r
-                    else:
-                        worst_weapon = self.table_cards.weapon_l
-                    for card in self.hand_cards:
-                        if card is isinstance(card, WeaponCards):
-                            if card.level_bonus > worst_weapon.level_bonus:  # is it better than what you are wielding?
-                                self.replace_card(worst_weapon, card)
-                return worst_weapon
-            else:
-                print(f"No weapon cards on hand")
+            if isinstance(card, WeaponCards):  # looking through hand cards searching for a weapon
+                if self.table_cards.weapon_l.level_bonus > self.table_cards.weapon_r.level_bonus:
+                    worst_weapon = self.table_cards.weapon_r
+                else:
+                    worst_weapon = self.table_cards.weapon_l
+                for card in self.hand_cards:
+                    if isinstance(card, WeaponCards):
+                        if card.level_bonus > worst_weapon.level_bonus:  # is it better than what you are wielding?
+                            self.replace_card(worst_weapon, card)
+                            return worst_weapon
 
     @property
     def throw_better_cards(self) -> List[Cards]:
         discards = [self.check_hand_cards(ArmourCards, self.table_cards.armour),
                     self.check_hand_cards(HeadgearCards, self.table_cards.head),
-                    self.check_hand_cards(FootGearCards, self.table_cards.foot), self.check_and_replace_weapon()]
+                    self.check_hand_cards(FootGearCards, self.table_cards.foot), self.check_weapon_cards()]
         return discards
 
     def check_hand_cards(self, card_type, item):
@@ -136,11 +127,42 @@ class Player:
             else:
                 print(f"No {card_type} cards on hand")
 
-
-
-
-
-
+    def check_weapon_cards(self):
+        for card in self.hand_cards:
+            if isinstance(card, WeaponCards):
+                if self.table_cards.weapon_l is None and self.table_cards.weapon_r is None:
+                    self.table_cards.weapon_r = card
+                elif self.table_cards.weapon_l is None and self.table_cards.weapon_r is isinstance(self.table_cards.weapon_r, WeaponCards ):
+                    self.table_cards.weapon_l = card
+                    if self.table_cards.weapon_l.level_bonus > self.table_cards.weapon_r.level_bonus:
+                        worst_weapon = self.table_cards.weapon_r
+                    else:
+                        worst_weapon = self.table_cards.weapon_l
+                    for card in self.hand_cards:
+                        if isinstance(card, WeaponCards):
+                            if card.level_bonus > worst_weapon.level_bonus:  # is it better than what you are wielding?
+                                self.replace_card(worst_weapon, card)
+                            return worst_weapon
 
     def die(self):
-        raise NotImplemented()
+        discards = [
+            self.table_cards.armour,
+            self.table_cards.head,
+            self.table_cards.foot,
+            self.table_cards.weapon_r,
+            self.table_cards.weapon_l,
+            self.table_cards.hireling,
+            ]
+        discards.extend(self.hand_cards)
+        self.table_cards.armour = None
+        self.table_cards.head = None
+        self.table_cards.foot = None
+        self.table_cards.weapon_r = None
+        self.table_cards.weapon_l = None
+        self.table_cards.hireling = None
+        self.hand_cards = None
+        self.race = "Human"
+        self.player_class = None
+        self.level = 1
+        self.levelTotal = 1
+        return discards

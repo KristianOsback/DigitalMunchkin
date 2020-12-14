@@ -1,7 +1,7 @@
 from typing import List
 
 from Cards_Samlet import *
-from Player_class import Player
+from Player_class import Player, PlayerType
 from random import randrange, shuffle
 from enum import Enum, auto
 
@@ -43,6 +43,18 @@ class Game:
         self.part_of_turn = 0
         self.game_won = False
 
+    def decide_player_type(self):
+        if self.active_player.type == PlayerType.COMPUTER:
+            self.player_turn_calc_computer()
+        else:
+            self.player_turn_calc_human()
+
+    def decide_player_fight(self, monster_card: MonsterCards):
+        if self.active_player.type == PlayerType.COMPUTER:
+            self.calculate_monsterfight_computer(monster_card)
+        else:
+            self.calculate_monsterfight_human(monster_card)
+
     def pick_door_card(self) -> Cards:
         if not self.door_stack:
             self.door_stack = shuffle_deck(self.door_discard)
@@ -64,23 +76,19 @@ class Game:
         self.treasure_discard.append(discard_card)
 
     def change_player(self):
-        if len(self.players) > self.player_number_turn:
-            self.player_number_turn += 1
-            self.active_player = self.players[self.player_number_turn - 1]
-
-        else:
-            self.active_player = self.players[0]
-            print("Next player turn!")
-            test = self.check_for_win()
-            if test is not False:
-                self.player_turn_calc()
-
         winner = self.check_for_win()
         if winner:
             print(f"Congratulation! {winner.name} won the game!")
         else:
             print("Next player turn!")
-            self.player_turn_calc()
+            if self.active_player == self.players[0]:
+                self.active_player = self.players[1]
+                print("Next player turn!")
+                self.decide_player_type()
+            else:
+                self.active_player = self.players[0]
+                print("Next player turn!")
+                self.decide_player_type()
 
     def check_for_win(self):
         for player in self.players:
@@ -91,7 +99,33 @@ class Game:
         discards = self.active_player.throw_better_cards
         self.treasure_discard.extend(discards)
 
-    def calculate_monsterfight(self, monstercard: MonsterCards):
+    def calculate_monsterfight_computer(self, monster_card: MonsterCards):
+        self.present_state = State.IN_FIGHT
+        for card in self.active_player.hand_cards:
+            print(card.cardName)  # read card
+            self.check_active_player_cards()
+        if monster_card.monsterLevel < self.active_player.level:
+            print("Victory!")
+            self.active_player.level = self.active_player.level + 1
+            self.active_player.level_total = self.active_player.level_total + 1
+            self.active_player.hand_cards.append(self.pick_treasure_card())
+            self.present_state = State.FIGHT_WICTORY
+            self.check_active_player_cards()
+            self.present_state = State.TURN_ENDED
+        else:
+            self.present_state = State.FIGHT_DEFEAT
+            dice = randrange(1, 7)
+            self.present_state = State.FLEEING
+            if dice > monster_card.run_away:
+                self.present_state = State.TURN_ENDED
+            else:
+                self.present_state = State.DEAD
+                print("You are dead!")
+                discards = self.active_player.die()
+                self.discard_cards(discards, self.treasure_discard)
+            self.change_player()
+
+    def calculate_monsterfight_human(self, monstercard: MonsterCards):
         self.present_state = State.IN_FIGHT
         for card in self.active_player.hand_cards:
             print(card.cardName)  # read card
@@ -114,10 +148,10 @@ class Game:
                 self.present_state = State.DEAD
                 print("You are dead!")
                 discards = self.active_player.die()
-                self.discard_cards(discards)
+                self.discard_cards(discards, self.treasure_discard)
             self.change_player()
 
-    def player_turn_calc(self):
+    def player_turn_calc_computer(self):
         door_card_in_play: Cards = self.pick_door_card()
         self.part_of_turn = 1
         if isinstance(door_card_in_play, MonsterCards):  # read card
@@ -140,8 +174,31 @@ class Game:
                 self.present_state = State.TURN_ENDED
                 self.change_player()
 
-    def discard_cards(self, discards):
-        raise NotImplemented()
+    def player_turn_calc_human(self):
+        door_card_in_play: Cards = self.pick_door_card()
+        self.part_of_turn = 1
+        if isinstance(door_card_in_play, MonsterCards):  # read card
+            self.part_of_turn = 2
+            self.calculate_monsterfight(door_card_in_play)
+        elif isinstance(door_card_in_play, CurseCards):
+            self.present_state = State.SECOND_PART_OF_TURN
+            print(door_card_in_play.curseEffect)  # read card
+        else:
+            self.present_state = State.SECOND_PART_OF_TURN
+            self.active_player.hand_cards.append(door_card_in_play)
+            self.check_active_player_cards()
+            for card in self.active_player.hand_cards:
+                if isinstance(card, MonsterCards):
+                    self.calculate_monsterfight(card)
+            else:
+                print("You search the room")
+                self.pick_door_card()
+                self.check_active_player_cards()
+                self.present_state = State.TURN_ENDED
+                self.change_player()
+
+    def discard_cards(self, discards: list, stack: list):
+        stack.append(discards)
 
 
 # playerhandler der er computer, en der er menneske, en random.

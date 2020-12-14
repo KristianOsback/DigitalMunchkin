@@ -1,17 +1,6 @@
 from Cards_Samlet import *
 from PlayerTurn_graph import Game
-from Player_class import Player, Gender
-from enum import Enum
-
-
-class PlayerType(Enum):
-    """
-    C = Computer
-    H = Human
-    """
-
-    COMPUTER = "Computer"
-    HUMAN = "Human"
+from Player_class import Player, Gender, PlayerType
 
 
 def prepare_game():
@@ -23,42 +12,35 @@ class WelcomeAndStarting:
     def start_game(self):
         print("Welcome to Digital Munchkin!")
         print("First let me know a bit about the first player.")
-        p1info = self.create_player()
-        first_player_name = p1info[0]
-        first_player_type = p1info[1]
-        first_player_gender = p1info[2]
-
+        p1 = self.create_player()
         print("Then let me know a bit about the second player.")
-        p2info = self.create_player()
-        second_player_name = p2info[0]
-        second_player_type = p2info[1]
-        second_player_gender = p2info[2]
-
-        return first_player_name, first_player_type, first_player_gender, second_player_name, second_player_type, second_player_gender
+        p2 = self.create_player()
+        players = [p1, p2]
+        return players
 
     def create_player(self):
-
-        player_name = input("Write your name.")
+        player = Player()
+        player.name = input("Write your name.")
         p_type = input("Click C for computer, H for human.")
         if p_type == "C":
-            player_type = PlayerType.COMPUTER
+            player.type = PlayerType.COMPUTER
         else:
-            player_type = PlayerType.HUMAN
+            player.type = PlayerType.HUMAN
         p_gender = input("Click M for computer, F for human.")
         if p_gender == "M":
-            player_gender = Gender.MALE
+            player.gender = Gender.MALE
         else:
-            player_gender = Gender.FEMALE
-        player_info = [player_name, player_type, player_gender]
-        return player_info
+            player.gender = Gender.FEMALE
+        return player
 
     def actual_game(self):
-        prepare = prepare_game()
-        p1 = Player("Tester1", PlayerType.COMPUTER, Gender.MALE)
-        p2 = Player("Tester2", PlayerType.COMPUTER, Gender.FEMALE)
-        the_game = Game([p1, p2], prepare[0], prepare[1])
+        stacks = prepare_game()
+        players = self.start_game()
+        the_game = Game([players[0], players[1]], stacks[0], stacks[1])
+        the_game.active_player = players[0]
         the_game.pick_door_card()
-        the_game.player_turn_calc()
+        the_game.decide_player_type()
+
 
 """
     def actual_game(self):
@@ -71,10 +53,12 @@ class WelcomeAndStarting:
         the_game.player_turn_calc()
 """
 
+The_Game = WelcomeAndStarting()
+The_Game.actual_game()
 
-if __name__ == '__main__':
-    game = WelcomeAndStarting()
-    # game.start_game()
-    game.actual_game()
+# if __name__ == '__main__':
+# game = WelcomeAndStarting()
+# game.start_game()
+# game.actual_game()
 
 
