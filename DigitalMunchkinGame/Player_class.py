@@ -43,6 +43,8 @@ class Table:
 
     def add_hireling(self, card: Cards):
         Player().table_cards.hireling = card
+
+
 class Player:
 
     def __init__(self,
@@ -92,28 +94,32 @@ class Player:
         elif new is isinstance(new, HirelingCards):
             self.table_cards.add_hireling(new)
 
-    def replace_weapon(self, old: Cards, new: Cards):
+    def check_and_replace_weapon(self, old: Cards, new: Cards):
         self.table_cards.remove(old)
-        for card
-        if isinstance(card, WeaponCards):  # looking through hand cards searching for a weapon
-            if self.table_cards.weapon_l.level_bonus > self.table_cards.weapon_r.level_bonus:
-                worst_weapon = self.table_cards.weapon_r
+        worst_weapon = None
+        for card in self.hand_cards:
+            if card is isinstance(card, WeaponCards):
+                if self.table_cards.weapon_l is None and self.table_cards.weapon_r is None:
+                    self.table_cards.weapon_r = card
+                elif self.table_cards.weapon_l is None and self.table_cards.weapon_r is isinstance(self.table_cards.weapon_r, WeaponCards):
+                    self.table_cards.weapon_l = card
+                    if self.table_cards.weapon_l.level_bonus > self.table_cards.weapon_r.level_bonus:
+                        worst_weapon = self.table_cards.weapon_r
+                    else:
+                        worst_weapon = self.table_cards.weapon_l
+                    for card in self.hand_cards:
+                        if card is isinstance(card, WeaponCards):
+                            if card.level_bonus > worst_weapon.level_bonus:  # is it better than what you are wielding?
+                                self.replace_card(worst_weapon, card)
+                return worst_weapon
             else:
-                worst_weapon = self.table_cards.weapon_l
-            for card in self.hand_cards:
-                if card.level_bonus > worst_weapon.level_bonus:  # is it better than what you are wielding?
-                    self.replace_card(worst_weapon, card)
-                    return worst_weapon
-            if hand == "right":
-                self.table_cards.add_weapon_r(new)
-            elif hand == "left":
-                self.table_cards.add_weapon_l(new)
+                print(f"No weapon cards on hand")
 
     @property
     def throw_better_cards(self) -> List[Cards]:
         discards = [self.check_hand_cards(ArmourCards, self.table_cards.armour),
                     self.check_hand_cards(HeadgearCards, self.table_cards.head),
-                    self.check_hand_cards(FootGearCards, self.table_cards.foot), self.check_weapon_cards()]
+                    self.check_hand_cards(FootGearCards, self.table_cards.foot), self.check_and_replace_weapon()]
         return discards
 
     def check_hand_cards(self, card_type, item):
@@ -130,14 +136,11 @@ class Player:
             else:
                 print(f"No {card_type} cards on hand")
 
-    def check_weapon_cards(self):
-        for card in self.hand_cards:
-                if self.table_cards.weapon_l is None and self.table_cards.weapon_r is None:
-                    self.table_cards.weapon_r = card
-                else:
 
-            else:
-                print(f"No weapon cards on hand")
+
+
+
+
 
     def die(self):
         raise NotImplemented()
