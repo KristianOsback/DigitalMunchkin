@@ -26,7 +26,7 @@ class WelcomeAndStarting:
             player.type = PlayerType.COMPUTER
         else:
             player.type = PlayerType.HUMAN
-        p_gender = input("Click M for computer, F for human.")
+        p_gender = input("Click M for Male, F for Female.")
         if p_gender == "M":
             player.gender = Gender.MALE
         else:
