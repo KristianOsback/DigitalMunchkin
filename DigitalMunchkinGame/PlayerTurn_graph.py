@@ -93,7 +93,7 @@ class Game:
         discards = self.active_player.throw_better_cards
         self.treasure_discard.extend(discards)
 
-    def calculate_monsterfight_computer(self, monster_card: MonsterCards):
+    def calculate_monster_fight_computer(self, monster_card: MonsterCards):
         self.present_state = State.IN_FIGHT
         for card in self.active_player.hand_cards:
             print(card.cardName)  # read card
@@ -156,7 +156,7 @@ class Game:
         self.part_of_turn = 1
         if isinstance(door_card_in_play, MonsterCards):  # read card
             self.part_of_turn = 2
-            self.calculate_monsterfight_computer(door_card_in_play)
+            self.calculate_monster_fight_computer(door_card_in_play)
         elif isinstance(door_card_in_play, CurseCards):
             self.present_state = State.SECOND_PART_OF_TURN
             print(door_card_in_play.curseEffect)  # read card
@@ -167,7 +167,7 @@ class Game:
             print("The player examine it's hand cards and optimize it's table cards.")
             for card in self.active_player.hand_cards:
                 if isinstance(card, MonsterCards):
-                    self.calculate_monsterfight_computer(card)
+                    self.calculate_monster_fight_computer(card)
             else:
                 print("You search the room")
                 self.pick_door_card()

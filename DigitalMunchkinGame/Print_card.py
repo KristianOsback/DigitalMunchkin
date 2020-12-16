@@ -1,81 +1,80 @@
-import Cards_Samlet
+from SearchFunction_v2 import return_card, print_card
+
+card = return_card()
+
 
 
 def PrintCard(CardItem):
-    
-    temp_var = []
+
     indent = 25
     indent2 = 27
 
-    cardNumber = CardItem.cardNumber
-    cardName = CardItem.cardName
-    cardType = CardItem.cardType
-    cardDescription = CardItem.cardDescription
-    isBig = CardItem.big
-    value = CardItem.itemValue
+    card.cardNumber = CardItem.cardNumber
+    card.cardName = CardItem.cardName
+    card.cardType = "Treasure"
+    card.cardDescription = CardItem.cardDescription
+    card.isBig = CardItem.big
+    card.value = 100
 
-    print(" " + "".center(indent2, '-')) #printing top
+    print(" " + "".center(indent2, '-'))  # printing top
     
-    #printing cardNumber
+    # printing cardNumber
     print("".center(0, ' '), end=" ")
-    print("|", end=" ") #Printing left side
-    print("6", end=" ") #Printing cardNumber
-    print("|".rjust(indent - (len(cardNumber) + 1), " ")) #Printing right side
+    print("|", end=" ")        # Printing left side
+    print("6", end=" ")      # Printing cardNumber
+    print("|".rjust(indent - (len(card.cardNumber) + 1), " ")) # Printing right side
     
-    #Printing empty space
+    # Printing empty space
     for i in range(1):
         print("".center(0, ' '), end=" ")
-        print("|", end=" ") #Printing left side
-        print("|".rjust((indent), " ")) #Printing right side
+        print("|", end=" ")   # Printing left side
+        print("|".rjust((indent), " "))  # Printing right side
     
-    #printing cardName
+    # printing cardName
     print("".center(0, ' '), end=" ")
-    print("|", end="") #Printing left side remove space in end
-    print(cardName.center((indent), " "), end="") #Printing cardNumber - remove the space in end and the extra indent.
-    print("|") #Printing right side, only the line
+    print("|", end="") # Printing left side remove space in end
+    print(card.cardName.center((indent), " "), end="") # Printing cardNumber - remove the space in end and the extra indent.
+    print("|")  # Printing right side, only the line
     
-    #printing cardType
+    # printing cardType
     print("".center(0, ' '), end=" ")
-    print("|", end="") #Printing left side
-    print(cardType.center((indent), " "), end="") #Printing cardNumber
-    print("|") #Printing right side
+    print("|", end="") # Printing left side
+    print(card.cardType.center((indent), " "), end="") # Printing cardNumber
+    print("|")  # Printing right side
     
-    #Printing empty space
+    # Printing empty space
     for i in range(5):
         print("".center(0, ' '), end=" ")
-        print("|", end=" ") #Printing left side
-        print("|".rjust((indent), " ")) #Printing right side
+        print("|", end=" ") # Printing left side
+        print("|".rjust((indent), " ")) # Printing right side
     
-    #printing cardDescription
+    # printing cardDescription
     print("".center(0, ' '), end=" ")
-    print("|", end="") #Printing left side
-    print(cardDescription.center((indent), " "), end="") #Printing cardNumber
-    print("|") #Printing right side
+    print("|", end="")  # Printing left side
+    print(card.cardDescription.center((indent), " "), end="") # Printing cardNumber
+    print("|")  # Printing right side
 
-    #Printing empty space
+    # Printing empty space
     for i in range(8):
         print("".center(0, ' '), end=" ")
-        print("|", end=" ") #Printing left side
-        print("|".rjust((indent), " ")) #Printing right side
-    
- 
-    #printing Big and itemValue
+        print("|", end=" ") # Printing left side
+        print("|".rjust((indent), " ")) # Printing right side
+
+    # printing Big and itemValue
     print("".center(0, ' '), end=" ")
-    print("|", end="") #Printing left side
-    print(value, end="") #Printing cardNumber
-    if isBig == True:
-        print("Big".rjust((indent-3), " "), end="") #Printing Big
-        print("|") #Printing right side
-        print(" " + "".center(indent2, '-')) #Printing bottom
+    print("|", end="") # Printing left side
+    print(card.value, end="") # Printing cardNumber
+    if card.isBig == "Big":
+        print("Big".rjust((indent-3), " "), end="")  # Printing Big
+        print("|")  # Printing right side
+        print(" " + "".center(indent2, '-')) # Printing bottom
     else:
-        print(" ".rjust((indent-3), " "), end="") #Printing Big
-        print("|") #Printing right side
-        print(" " + "".center(indent2, '-')) #Printing bottom
+        print(" ".rjust((indent-3), " "), end="")  # Printing Big
+        print("|")  # Printing right side
+        print(" " + "".center(indent2, '-'))  # Printing bottom
         
-    
-    
-PrintCard(Cards_Samlet.Cards.treasure_cards_stack[0])
-    
-    
-#for x in Cards_Samlet.Cards:
-   #PrintCard(Cards_Samlet.Cards.treasureCardsStack[3])
+PrintCard(card)
+  # Search for staff for best result
+
+
+
